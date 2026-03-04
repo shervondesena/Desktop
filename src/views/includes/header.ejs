@@ -1,0 +1,2061 @@
+<html>
+
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '90e797fd2a66dc4a9153e2884be865033dac039d';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+
+<!-- Dung cho viec nguoi dung vao trang auth/register thi phai hide di reg modal -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname;
+    if (currentPath === '/auth/register') {
+      // Xóa các phần tử có class _1M8UeeUNQsZy4H6GAA2ah3
+      const elementsToRemoveByClass = document.querySelectorAll('._1M8UeeUNQsZy4H6GAA2ah3');
+      elementsToRemoveByClass.forEach(element => {
+        element.remove();
+      });
+
+      // Xóa phần tử có id reg
+      const elementToRemoveById = document.getElementById('reg');
+      if (elementToRemoveById) {
+        elementToRemoveById.remove();
+      }
+    }
+  });
+</script>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="/images/logo2.png" type="image/png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google" content="notranslate">
+  <meta name="apple-mobile-web-app-title" content="<%=dataPage.session.siteConfig.site_name;%>">
+  <meta name="description" content="<%=dataPage.session.siteConfig.site_description;%>">
+  <meta name="keywords" content="<%=dataPage.session.siteConfig.site_keyword;%>">
+  <title>
+    <%=dataPage.session.siteConfig.site_name;%>
+  </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- TOAST CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- CSS STYLE -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Roboto", sans-serif;
+    }
+
+    html {
+      font-family: "Roboto", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      font-family: "Roboto", sans-serif;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+      background: #000;
+      transition: all 0.2s linear;
+    }
+
+    header.scrolled {
+      box-shadow: 1px 6px 13px 3px #080808;
+    }
+
+    header .header-top {
+      background: url(../header/header-top.png) repeat-x;
+      height: 51px;
+    }
+
+    header .header-top>div {
+      max-width: 1300px;
+      padding: 5px 15px 5px;
+      display: flex;
+      margin: auto;
+      justify-content: space-between;
+      height: 50px;
+    }
+
+    header .header-top .header-top-left {
+      display: flex;
+    }
+
+    header .header-top .header-top-right {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    header .header-top .header-top-left a {
+      text-decoration: none;
+      padding: 10px 20px;
+      border: none;
+      background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
+      border-radius: 27px;
+      line-height: 21px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-right: 1rem;
+    }
+
+    header .header-top .header-top-left a:nth-child(2) {
+      background: linear-gradient(to top, #b15a16, #f8d78a, #f8eab3);
+      margin-right: 0;
+      color: #000;
+    }
+
+    header .header-top .login {
+      background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
+      color: white;
+      border-radius: 20px;
+      font-weight: 900;
+      padding: 8px 20px;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      margin-right: 0.5rem;
+    }
+
+    header .header-top .register {
+      background: linear-gradient(to top, #959191, #d9d5d5, #ffffff);
+      color: black;
+      border-radius: 20px;
+      padding: 8px 20px;
+      outline: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    header .header-bottom {
+      background: url(../header/header-bottom.png) repeat-x;
+      height: 80px;
+    }
+
+    /* Header-Bottom */
+    header .header-bottom>div {
+      max-width: 1300px;
+      position: relative;
+      margin: auto;
+      height: 80px;
+    }
+
+    header .header-bottom>div ul {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      height: 80px;
+      align-items: center;
+      line-height: 65px;
+    }
+
+    header .header-bottom>div nav {
+      height: 80px;
+      width: 100%;
+    }
+
+    header .header-bottom>div li {
+      display: inline;
+      vertical-align: top;
+      width: 15%;
+    }
+
+    header .header-bottom>div li a {
+      font-size: 25px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    header .logomain {
+      position: absolute;
+      top: -50px;
+      right: 50%;
+      transform: translateX(50%);
+      transition: all 0.2s linear;
+    }
+
+    header .logomain img {
+      width: 200px;
+      transition: all 0.2s linear;
+    }
+
+    header.scrolled .logomain img {
+      filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+    }
+
+    /* HEADER ITEM GAME */
+    header nav {
+      position: absolute;
+    }
+
+    header ._4GFFQME3VxQOLaxRzBxeQ>ul>li {
+      height: 70px;
+      margin: 0 10px;
+      padding: 0 10px;
+      color: #a2aabd;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    header ._2xvnAce2IF0yzYHRGAlbG8 {
+      position: absolute;
+      z-index: 30;
+      padding: 5px;
+      color: #171717;
+      border-radius: 15px;
+      visibility: hidden;
+      white-space: nowrap;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      background: #000000c4;
+    }
+
+    header ._4GFFQME3VxQOLaxRzBxeQ>ul>li:hover ._2xvnAce2IF0yzYHRGAlbG8 {
+      visibility: visible;
+    }
+
+    header ._2xvnAce2IF0yzYHRGAlbG8 ol {
+      justify-content: flex-start;
+      list-style: none;
+      margin: 0 auto;
+      display: flex;
+      padding: 10px 0 0;
+      flex-wrap: wrap;
+      width: 1200px;
+    }
+
+    header ._2xvnAce2IF0yzYHRGAlbG8 ol li {
+      width: 25%;
+      padding: 0 10px;
+      color: #000;
+      font-size: 13px;
+      line-height: 30px;
+      text-align: left;
+    }
+
+    header ._2xvnAce2IF0yzYHRGAlbG8 ol li#slotGame {
+      width: 14%;
+      padding: 10px;
+      color: #000;
+      font-size: 13px;
+      line-height: 30px;
+      text-align: left;
+    }
+
+    header ._2xvnAce2IF0yzYHRGAlbG8 ol li a {
+      display: block;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    header ._2xvnAce2IF0yzYHRGAlbG8 ol li img {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* LOGIN MODAL */
+
+    .modal-login {
+      z-index: 1050;
+      display: none;
+      position: fixed;
+      top: 0 !important;
+      left: 0;
+      overflow: hidden;
+      outline: 0;
+      background: linear-gradient(to top, black, rgba(0, 0, 0, 0.25));
+    }
+
+
+    ._2fMGqDLeVdueHNrY6jh1tZ .modal-dialog {
+      margin-top: 100px;
+      border: none;
+      top: 10%;
+      left: 0;
+    }
+
+    ._2fMGqDLeVdueHNrY6jh1tZ .modal-content {
+      width: 540px;
+      min-height: 400px;
+      box-shadow: none;
+      border-radius: 20px;
+      position: relative;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      outline: 0;
+      box-shadow: 4px 4px 4px 0px #0000002b;
+    }
+
+    ._38xNbPhu8VneFOc5oh78Hr {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      width: 31px;
+      height: 31px;
+      z-index: 1;
+      background-color: orange;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+        position: relative;
+      }
+    }
+
+    .logo-login {
+      background: url(../images/logongang.png);
+      background-position: center;
+      height: 110px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    ._3N2lRww2b9eZP-F5fSS-Rq section>form {
+      position: relative;
+      width: 350px;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    ._3N2lRww2b9eZP-F5fSS-Rq section>form input {
+      width: 100%;
+      outline: none;
+      height: 40px;
+      padding: 0 10px;
+      font-size: 17px;
+      background: #fff;
+      border: none;
+      border-bottom: 1px solid #001c42;
+      border-radius: 0px;
+    }
+
+    ._3kf2U2RqwnANN5VYWFRt8X {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    ._1elJEDoklSJeZCRhRorPTp {
+      width: 200px;
+      height: 40px;
+      margin-top: 2rem;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
+    }
+
+    ._3bcYJCzylw0eAO3uq2kJMq {
+      margin: 30px 0;
+      color: #001c42;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    /* CAPTCHA LOGIN */
+    .modal-login form .captcha {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-login form .captcha i {
+      font-size: 18px;
+    }
+
+    .modal-login form .captcha .preview {
+      color: #080808;
+      font-weight: 800;
+      font-size: 20px;
+      width: 100%;
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      letter-spacing: 8px;
+      border: 1px dashed #888;
+      font-family: "monospace";
+    }
+
+    .modal-login form .captcha .preview span {
+      display: inline-block;
+      user-select: none;
+    }
+
+    .modal-login form .captcha .captcha-form {
+      display: flex;
+    }
+
+    .modal-login form .captcha .captcha-form input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #888;
+    }
+
+    .modal-login form .captcha .captcha-form .captcha-refresh {
+      width: 40px;
+      border: none;
+      outline: none;
+      background: #888;
+      color: #eee;
+      cursor: pointer;
+    }
+
+    /* REGISTER MODAL */
+    .modal {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      outline: 0;
+    }
+
+    ._1M8UeeUNQsZy4H6GAA2ah3 {
+      background: linear-gradient(to top, black, rgba(0, 0, 0, 0.25));
+    }
+
+    ._1M8UeeUNQsZy4H6GAA2ah3 .modal-dialog {
+      width: 820px;
+      margin-top: 59px;
+    }
+
+    @media (min-width: 768px) {
+      .modal-dialog {
+        margin: 30px auto;
+      }
+    }
+
+    .modal-dialog {
+      position: relative;
+    }
+
+    ._1M8UeeUNQsZy4H6GAA2ah3 .modal-content {
+      border-radius: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .modal-content {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .modal-content {
+      position: relative;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #999;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+      outline: 0;
+    }
+
+    ._1_Ib3et6YkodyIb6NDva3w {
+      text-align: center;
+      padding: 12px;
+      color: white;
+      background: #b50909;
+    }
+
+    ._1_Ib3et6YkodyIb6NDva3w p {
+      font-size: 25px;
+      font-weight: 1000;
+      text-transform: uppercase;
+    }
+
+    ._1M8UeeUNQsZy4H6GAA2ah3 form label span {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 14.65;
+    }
+
+    ._1M8UeeUNQsZy4H6GAA2ah3 form input {
+      width: 100%;
+      padding: 10px;
+      border: 0.5px solid #c7c4c4;
+      margin-top: 5px;
+    }
+
+    ._1M8UeeUNQsZy4H6GAA2ah3 form input:focus-visible {
+      outline: none;
+    }
+
+    ._1M8UeeUNQsZy4H6GAA2ah3 form .form-group {
+      margin-bottom: 1rem;
+    }
+
+    /* MAIN */
+
+    .main {
+      background: url(../images/bgmain.jpg);
+      width: 100%;
+      height: 85%;
+    }
+
+    .main img {
+      width: 100%;
+    }
+
+    .main .main__logo {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 420px;
+      z-index: 5;
+    }
+
+    .main__content__left,
+    .main__content__right {
+      position: absolute;
+    }
+
+    .main__content__left {
+      top: 25%;
+      width: 65%;
+      left: 2%;
+    }
+
+    .main__content__right {
+      display: flex;
+      width: 37%;
+      flex-wrap: wrap;
+      right: 0;
+      top: 38%;
+    }
+
+    .main__content__right img {
+      width: 50%;
+      padding: 10px;
+    }
+
+    .container {
+      max-width: 1500px;
+      margin: auto;
+    }
+
+    /* KM HOT */
+    .main-promotions {
+      padding-top: 3rem;
+      background: url(../images/bgmain.jpg);
+      position: relative;
+      width: 100%;
+      height: fit-content;
+    }
+
+    .head-red-container {
+      padding: 2rem 0;
+    }
+
+    .head-red-container h2 {
+      font-size: 35px;
+      width: 50%;
+      color: #fff;
+      position: relative;
+      padding: 5px 0 5px 20px;
+      background: linear-gradient(to right, #ffffff36, transparent);
+    }
+
+    .head-red-container h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -8px;
+      bottom: 0;
+      width: 8px;
+      height: 70px;
+      background-color: red;
+    }
+
+    .main-promotions-content {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .main-promotions-content img {
+      width: 50%;
+      padding: 20px;
+      cursor: pointer;
+    }
+
+    /* GAME HOT */
+
+    .main-games-content {
+      padding: 0 58px;
+    }
+
+    .main-games-content .top {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .main-games-content .bot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .main-games-content img {
+      width: 25%;
+      cursor: pointer;
+    }
+
+    /* THONG TIN */
+    .infor-main {
+      background-color: #000;
+      width: 100%;
+      padding: 2rem 0;
+    }
+
+    .infor-main h3 {
+      text-align: center;
+      color: white;
+      font-size: 23px;
+      margin-bottom: 2rem;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      grid-gap: 20px;
+      text-align: center;
+    }
+
+    .grid-container .grid-item a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .thongtin-diachi {
+      background-color: #000;
+      color: #c7c4c4;
+    }
+
+    .thongtin-diachi__content {
+      display: flex;
+      padding: 2rem 0;
+    }
+
+    .thongtin-diachi__content>div p {
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1rem 0;
+      text-align: center;
+      background: #333333;
+    }
+
+    footer img {
+      max-width: 1500px;
+    }
+
+    /* PROMOTIOS PAGE */
+
+    ._3APJCJr18cNksZ53-4jnrw {
+      padding-top: 130px;
+      background: url(/images/bgmain.jpg);
+      height: 100%;
+    }
+
+    ._1UEhiSbeYEgYWSJeUHqKc7 {
+      max-width: 1300px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;
+      padding-top: 3rem;
+      align-content: center;
+    }
+
+    ._2Q5_8e9t7nS0te23FQXjLw .modal-dialog {
+      margin-top: 1vh;
+      width: 1200px;
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    ._2Q5_8e9t7nS0te23FQXjLw .modal-dialog .modal-content {
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+
+    ._38qhKwaKsk4Irh7o_doxEc {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      border-bottom: 1px solid;
+      padding-bottom: 28px;
+      align-items: center;
+    }
+
+    ._38qhKwaKsk4Irh7o_doxEc h4 {
+      color: blue;
+      text-transform: uppercase;
+      font-size: 20px;
+    }
+
+    ._38qhKwaKsk4Irh7o_doxEc button {
+      opacity: 1 !important;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    /* Responsive */
+    @media only screen and (max-width: 1600px) {
+      .container {
+        max-width: 1300px;
+      }
+    }
+
+    @media only screen and (max-width: 1600px) {
+      footer img {
+        max-width: 1300px;
+      }
+    }
+
+    @media only screen and (max-width: 1600px) {
+      ._1M8UeeUNQsZy4H6GAA2ah3 .modal-dialog {
+        margin-top: 1rem
+      }
+    }
+  </style>
+
+  <style>
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-horizontal>.swiper-pagination-bullets,
+    .swiper-pagination-bullets.swiper-pagination-horizontal {
+      bottom: 67px;
+      left: 0;
+      width: 100%;
+    }
+
+    .swiper-pagination-bullet {
+      width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 18px));
+      height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 18px));
+      display: inline-block;
+      border-radius: 50%;
+      background: var(--swiper-pagination-bullet-inactive-color, #fff);
+      opacity: 1.5;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #000 !important;
+    }
+
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+      content: '';
+    }
+
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after {
+      content: '';
+    }
+
+    .swiper-button-prev {
+      margin-left: 300px;
+      background-image: url(/cdn/system-requirement/Web.PortalNew/UA531-01/c8e37fbb36/images/be435af42f6ff3cd9b8051591954d912.png);
+      background-size: cover;
+      height: 50px;
+      width: 50px;
+      opacity: 0.5;
+    }
+
+    .swiper-button-next {
+      margin-right: 300px;
+      background-image: url(/cdn/system-requirement/Web.PortalNew/UA531-01/c8e37fbb36/images/93353a5f0af89ed68ee158b6a5ecb70d.png);
+      background-size: cover;
+      height: 50px;
+      width: 50px;
+      opacity: 0.5;
+    }
+
+    .modal_1M8UeeUNQsZy4H6GAA2ah3 {
+      top: -5px !important;
+    }
+  </style>
+
+  <!-- Modal Chuyen Quy -->
+  <style>
+    .game-transfer-wallet-modal-v2 {
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .6);
+      font-size: 14px;
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .game-transfer-wallet-modal-v2__main {
+      animation-name: modal-appear;
+      animation-duration: .3s;
+      animation-timing-function: ease-in-out;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .2);
+      width: 450px;
+      max-width: 450px;
+      background: rgba(255, 255, 255, .1);
+      box-shadow: 4px 4px 20px 10px rgba(0, 0, 0, .6);
+      backdrop-filter: blur(10px);
+    }
+
+    .game-transfer-wallet-modal-v2__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 40px;
+      padding: 0 10px 0 10px;
+      background-color: #f19949;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .game-transfer-wallet-modal-v2__content {
+      padding: 10px 10px 20px 10px;
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .game-transfer-wallet-modal-v2__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      color: #000;
+    }
+
+    .game-transfer-wallet-modal-v2__item>span {
+      display: inline-block;
+    }
+
+    .game-transfer-wallet-modal-v2__item>div {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 75%;
+    }
+
+    .game-transfer-wallet-modal-v2__item>div button {
+      cursor: pointer;
+    }
+
+    .game-transfer-wallet-modal-v2__item-amount {
+      display: block;
+      border: 1px solid #e9e7e7;
+      border-radius: 4px;
+      width: 73%;
+      padding: 5px 6px;
+      color: #f18016;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .game-transfer-wallet-modal-v2__item button {
+      border-radius: 4px;
+      border: 1px solid #a09e9e;
+      margin-left: 6px;
+      width: 70px;
+      padding: 5px 0;
+      background-color: #f4f4f4;
+      color: #000;
+    }
+
+    .game-transfer-wallet-modal-v2__item input {
+      border-radius: 4px;
+      border: 1px solid #a09e9e;
+      width: 73%;
+      padding: 5px;
+      background-color: #fff;
+      text-align: right;
+    }
+
+    .game-transfer-wallet-modal-v2__footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-top: 1px solid #d7d6d6;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .game-transfer-wallet-modal-v2__footer button:first-child {
+      border-radius: 20px;
+      border: 1px solid #a09e9e;
+      margin-left: 4px;
+      width: 35%;
+      padding: 7px 0;
+      background-color: #e74c4c;
+      color: #fff;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .game-transfer-wallet-modal-v2__footer button:nth-child(2) {
+      border: none;
+      border-radius: 20px;
+      margin-left: 4px;
+      width: 60%;
+      padding: 7px 0;
+      background-color: #e74c4c;
+      color: #fff;
+    }
+
+    .game-transfer-wallet-modal-v2__footer button {
+      height: 36px;
+    }
+
+    .game-transfer-wallet-modal-v2__title button {
+      border: none;
+      padding: 12px;
+      background: #f00;
+      color: #fff;
+      margin-right: -1rem;
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- Account -->
+  <style>
+    .BDw45cKhOY5X-HJyc5_2C {
+      position: relative;
+      background-color: #111212;
+      padding-top: 130px;
+    }
+
+    .BDw45cKhOY5X-HJyc5_2C ._1h0fCbtWimc44r9dNSenvs {
+      position: relative;
+      max-width: 1300px;
+      margin: 0 auto
+    }
+
+    .BDw45cKhOY5X-HJyc5_2C ul {
+      list-style: none;
+    }
+
+    .BDw45cKhOY5X-HJyc5_2C ul a {
+      text-decoration: none;
+    }
+
+    ._2Qr8R07mMXKa3GCsGT1Jx0 {
+      height: fit-content;
+      background: #111212 url(/images/bgmain.jpg) no-repeat center top;
+    }
+
+    .gSkJpAc7IrbXlj3biLk1e {
+      padding: 30px 0;
+      border-radius: 5px;
+    }
+
+    ._5kpYNqHFkQun8HWfr-YDg {
+      display: flex;
+    }
+
+    ._5kpYNqHFkQun8HWfr-YDg .NMMFlKUD4h5ITLiRUaVhE {
+      width: 300px;
+      color: #fff;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    ._5kpYNqHFkQun8HWfr-YDg .NMMFlKUD4h5ITLiRUaVhE>section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 218px;
+      margin-bottom: 2px;
+      color: #fff;
+      background: #444;
+      border-radius: 10px 10px 0 0;
+    }
+
+    ._5kpYNqHFkQun8HWfr-YDg .NMMFlKUD4h5ITLiRUaVhE>section>i {
+      font-size: 60px;
+    }
+
+    .fa-circle-user:before,
+    .fa-user-circle:before {
+      content: "\f2bd";
+    }
+
+    .g5UAxxGS5PCGmIpl_Gv_7 {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .g5UAxxGS5PCGmIpl_Gv_7>span:nth-child(2) {
+      display: inline-block;
+      max-width: 105px;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .VCWc1xD16JjHVQV5T2QFm {
+      margin: 0 auto;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 25px;
+    }
+
+    .VCWc1xD16JjHVQV5T2QFm ._2kiO79mWzuPtUlVD3NTg1L {
+      display: inline-block;
+      max-width: 6em;
+      font-size: 22px;
+      vertical-align: top;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .VCWc1xD16JjHVQV5T2QFm ._1Xfqx_F_JJDoIzF5z2jYbw {
+      font-size: 22px;
+      vertical-align: top;
+    }
+
+    ul._3XHO2UA0RB0rER4aWKSeqO {
+      display: inline-flex;
+      width: 100%;
+      margin: 0 0 2px;
+      padding: 0;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE .fa-circle-user {
+      font-size: 50px;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO {
+      display: inline-flex;
+      width: 100%;
+      margin: 0 0 2px;
+      padding: 0;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li:hover,
+    .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li.active {
+      background: #fe4d01;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li:hover a,
+    .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li.active a {
+      color: #000;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li {
+      flex: 1;
+      height: 100px;
+      list-style: none;
+      background-color: #262626;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._1zBBtO83fFSEPTlrAwj7Vm {
+      display: block;
+      margin: 0 auto;
+      padding: 0 0 25px 0;
+      background: #262626;
+      border-radius: 0 0 10px 10px;
+      list-style: none;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._1zBBtO83fFSEPTlrAwj7Vm>li {
+      position: relative;
+      height: 56px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      line-height: 56px;
+    }
+
+    .NMMFlKUD4h5ITLiRUaVhE ul._1zBBtO83fFSEPTlrAwj7Vm>li a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
+      color: inherit;
+      text-align: left;
+      padding-left: 44px;
+      text-decoration: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    ul._1zBBtO83fFSEPTlrAwj7Vm>li.active,
+    ul._1zBBtO83fFSEPTlrAwj7Vm>li:hover {
+      color: #000;
+      background: #fe4d01;
+    }
+
+    ._5kpYNqHFkQun8HWfr-YDg ._1OOV-q3ssZv9VpaFEYYwdD {
+      flex: 1;
+      width: calc(100% - 330px);
+      margin-left: 30px;
+    }
+
+    ._3OLEXTdkyZ3OH8vf_E4_N0 {
+      padding: 0;
+      background: none;
+      border: none;
+    }
+
+    ._1YrLHVe0eksXwask_nimCh {
+      display: flex;
+      width: 100%;
+      margin: 0 0 20px;
+      overflow-x: auto;
+    }
+
+    ._1YrLHVe0eksXwask_nimCh ul {
+      display: flex;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    ._1YrLHVe0eksXwask_nimCh li {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 15px;
+      width: calc(100% / 3 - 8px);
+      height: 72px;
+      margin: 3px 12px 3px 0;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      background: #262626;
+      border-radius: 10px;
+      box-sizing: border-box;
+      border: 3px solid #262626;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    ._1YrLHVe0eksXwask_nimCh li:hover,
+    ._1YrLHVe0eksXwask_nimCh li.active {
+      border-color: #fe4d01;
+    }
+
+    .panel-default {
+      border-color: #ddd;
+    }
+
+    .panel {
+      margin-bottom: 20px;
+      background-color: #fff;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .panel ._9MW-vSzsgcK9FRDyDzgUm {
+      background: #fe4d01;
+      color: #fff;
+      position: relative;
+      height: 51px;
+      font-size: 21px;
+    }
+
+    .panel-default>.panel-heading {
+      border-color: #ddd;
+    }
+
+    .panel-heading {
+      padding: 10px 15px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+
+    .panel-body {
+      padding: 15px;
+    }
+
+    .panel ._9MW-vSzsgcK9FRDyDzgUm i {
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .panel ._9MW-vSzsgcK9FRDyDzgUm span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .fa-chevron-left:before {
+      content: "\f053";
+    }
+
+    .table {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    table {
+      background-color: transparent;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    .table>caption+thead>tr:first-child>th,
+    .table>colgroup+thead>tr:first-child>th,
+    .table>thead:first-child>tr:first-child>th,
+    .table>caption+thead>tr:first-child>td,
+    .table>colgroup+thead>tr:first-child>td,
+    .table>thead:first-child>tr:first-child>td {
+      border-top: 0;
+    }
+
+    .table>thead>tr>th {
+      vertical-align: bottom;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+      padding: 8px;
+      line-height: 1.42857143;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+    }
+
+    ._1OOV-q3ssZv9VpaFEYYwdD .panel ._1E-h2m4hlXgPeBtlUrqagO {
+      background: #fe4d01;
+      color: #fff;
+      position: relative;
+      height: 51px;
+      font-size: 21px;
+    }
+
+    ._1OOV-q3ssZv9VpaFEYYwdD .panel ._1E-h2m4hlXgPeBtlUrqagO span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+
+  <!-- POPUP LOGIN -->
+  <style>
+    #popup-login {
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      z-index: 999;
+      display: none;
+      transition: all 0.3s;
+    }
+
+    .popup-login--overlay {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: #000000c7;
+      z-index: 998;
+      transition: all 0.3s;
+      /* Z-index thấp hơn để không chặn icon */
+    }
+
+    .popup-login--content {
+      width: 600px;
+      height: fit-content;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      z-index: 1001;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s;
+    }
+
+    .popup-login--content img {
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+      scale: 1.3;
+      transition: all 0.3s;
+    }
+
+    .popup-login--content .fa-rectangle-xmark {
+      position: absolute;
+      font-size: 35px;
+      color: #edff02;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      animation: blink 1.5s infinite;
+      z-index: 1002;
+    }
+
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+
+      20% {
+        opacity: 0.7;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      70% {
+        opacity: 0.8;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes marqueeAnimation-8325873 {
+      100% {
+        transform: translateX(-17620px);
+      }
+    }
+  </style>
+
+
+  <!-- Toast -->
+  <style>
+    #toast-container>div {
+      opacity: 1 !important;
+    }
+  </style>
+</head>
+
+<body id="rootBody" class="vi">
+
+  <!-- Modal Login -->
+  <div uib-modal-window="modal-window " class="modal _2fMGqDLeVdueHNrY6jh1tZ modal-login">
+    <div class="modal-dialog ">
+      <div class="modal-content" uib-modal-transclude="">
+        <gupw-login-box resolve="$resolve" modal-instance="$uibModalInstance" close="$close($value)"
+          dismiss="$dismiss($value)" class="ng-scope ng-isolate-scope">
+          <button style="border-radius: 50%;background: #b50909;font-weight: 900;font-size: 20px;"
+            ng-class="$ctrl.styles.close" class="btn btn-link _38xNbPhu8VneFOc5oh78Hr" ng-click="$ctrl.dismiss()"><i
+              class="fa-solid fa-xmark"></i></button>
+          <div ng-class="$ctrl.styles['login-box']" class="_3N2lRww2b9eZP-F5fSS-Rq">
+            <section>
+              <div ng-class="$ctrl.styles.logo" class="logo-login">
+                <a href="/"></a>
+              </div>
+              <form novalidate="" ng-submit="$ctrl.login()"
+                class="ng-invalid ng-invalid-required ng-dirty ng-valid-parse" id="loginForm">
+                <div ng-class="$ctrl.styles['input-wrapper']" class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i style="font-size: 18px;" class="fa-solid fa-user"></i>
+                  <input type="text" placeholder="Tài Khoản" ng-model="$ctrl.user.account.value"
+                    class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" id="username">
+                </div>
+                <div ng-class="$ctrl.styles['input-wrapper']" class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i style="font-size: 18px;" class="fa-solid fa-key"></i>
+                  <input type="password" placeholder="Mật Khẩu" ng-model="$ctrl.user.password.value"
+                    class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" id="password">
+                </div>
+                <br>
+                <div class="captcha">
+                  <i class="fa-solid fa-robot"></i>
+                  <div class="captcha-form" style="width: 50%;">
+                    <input type="text" id="captcha-form" placeholder="Nhập Captcha">
+                    <button type="button" class="captcha-refresh">
+                      <i class="fa fa-refresh"></i>
+                    </button>
+                  </div>
+                  <div class="preview" style="width: 40%;"></div>
+                </div>
+                <button type="submit" ng-class="$ctrl.styles['login-btn']" class="_1elJEDoklSJeZCRhRorPTp login-submit"
+                  ng-mouseenter="$ctrl.agreeVisible = true" ng-mouseleave="$ctrl.agreeVisible = false"
+                  ng-disabled="$ctrl.loginPending">
+                  <span ng-if="!$ctrl.loginPending" translate="Shared_Login"
+                    class="ng-scope _3kf2U2RqwnANN5VYWFRt8Xl">ĐĂNG
+                    NHẬP</span>
+                </button>
+              </form>
+              <p ng-class="$ctrl.styles.txt" class="_3bcYJCzylw0eAO3uq2kJMq">
+                <span translate="Shared_New_Player" class="ng-scope">Bạn chưa có tài khoản?</span>
+                <span>
+                  Nhấp Vào <span style="color: blue; cursor: pointer;" ng-click="$ctrl.openRegisterModal()"> Đây </span>
+                  để đăng ký ngay!
+                </span>
+              </p>
+            </section>
+          </div>
+        </gupw-login-box>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Register -->
+  <div uib-modal-window="modal-window" class="modal _1M8UeeUNQsZy4H6GAA2ah3" role="dialog" index="0"
+    style="z-index: 1050; top: -5px !important; display: none;">
+    <div class="modal-dialog" style="padding: 0 28px">
+      <div class="modal-content" uib-modal-transclude="" style="overflow-y: auto; max-height: 110vh">
+        <gupw-register resolve="$resolve" modal-instance="$uibModalInstance" close="$close($value)"
+          dismiss="$dismiss($value)" class="ng-scope ng-isolate-scope">
+          <button
+            style="width: 35px; border-radius: 50%;background: #fff;font-weight: 900;font-size: 20px;position: absolute;top: 10px;right: 10px;border: none;padding: 7px;color: #b50909;cursor: pointer;"
+            ng-class="$ctrl.styles.close" class="btn btn-link _2ZxfNIqB8ZGUvf62lMlRii" ng-click="$ctrl.dismiss()"><i
+              class="fa-solid fa-xmark"></i></button>
+          <article ng-class="$ctrl.styles.article" class="_3Ep7x5F8gsaERZQuGfyGNo">
+            <div ng-class="$ctrl.styles.title" class="_1_Ib3et6YkodyIb6NDva3w">
+              <p translate="Register_Account_Registration" class="ng-scope">Đăng ký tài khoản</p>
+            </div>
+            <div ng-class="$ctrl.styles.content" class="_3jqXktvTialDzXUMLf4RzN">
+              <gupw-register-info class="ng-isolate-scope">
+                <div ng-if="!$ctrl.pending" ng-class="$ctrl.styles.wrapper" class="ng-scope">
+                  <div ng-if="!$ctrl.enable" class="ng-scope">
+                  </div>
+                </div>
+              </gupw-register-info>
+              <gupw-register-form class="ng-isolate-scope">
+                <div ng-class="$ctrl.styles.wrapper" class="lSU-UeevMWDFTc7xVRq_g">
+                  <form class="form-horizontal ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-parse"
+                    novalidate="" ng-if="$ctrl.user" ng-submit="$ctrl.submit()" id="registerForm">
+                    <fieldset style="border: none; padding: 30px 40px 10px 40px;">
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                          <span translate="Register_Member_Account" class="ng-scope">Tên tài
+                            khoản</span>
+                        </label>
+                        <div class="col-sm-6 ng-isolate-scope" field-error=""
+                          field-error-title="$ctrl.user.account.errorMessage"
+                          field-error-is-open="$ctrl.user.account.invalid"
+                          ng-class="{ 'has-error': $ctrl.user.account.invalid }" style="position: relative;">
+                          <input type="text"
+                            class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched"
+                            placeholder="Từ 6 đến 12 ký tự, không sử dụng ký tự đặc biệt"
+                            ng-model="$ctrl.user.account.value" ng-blur="$ctrl.user.account.validate()" id="username">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                          <span translate="Register_Member_Password" class="ng-scope">Mật khẩu
+                            đăng nhập</span>
+                        </label>
+                        <div class="col-sm-6 ng-isolate-scope" field-error=""
+                          field-error-title="$ctrl.user.password.errorMessage"
+                          field-error-is-open="$ctrl.user.password.invalid"
+                          ng-class="{ 'has-error': $ctrl.user.password.invalid }" style="position: relative;">
+                          <input type="password"
+                            class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched"
+                            placeholder="Hơn 6 ký tự phải bao gồm chữ cái và số" ng-model="$ctrl.user.password.value"
+                            ng-blur="$ctrl.user.password.validate()" ng-change="$ctrl.user.checkPasswordStrength()"
+                            id="password">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                          <span translate="Register_Confirm_Password" class="ng-scope">Xác
+                            nhận
+                            mật khẩu</span>
+                        </label>
+                        <div class="col-sm-6 ng-isolate-scope" field-error=""
+                          field-error-title="$ctrl.user.confirmPassword.errorMessage"
+                          field-error-is-open="$ctrl.user.confirmPassword.invalid"
+                          ng-class="{ 'has-error': $ctrl.user.confirmPassword.invalid }" style="position: relative;">
+                          <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                            placeholder="Vui lòng xác nhận lại mật khẩu của bạn"
+                            ng-model="$ctrl.user.confirmPassword.value" ng-blur="$ctrl.user.confirmPassword.validate()"
+                            id="password_cf">
+                        </div>
+                      </div>
+                      <div class="form-group name ng-scope" ng-if="$ctrl.user.name.visible">
+                        <label class="col-sm-2 control-label">
+                          <span translate="Register_Real_Name" class="ng-scope">Họ và tên</span>
+                        </label>
+                        <div class="col-sm-6 ng-isolate-scope" field-error=""
+                          field-error-title="$ctrl.user.name.errorMessage" field-error-is-open="$ctrl.user.name.invalid"
+                          ng-class="{ 'has-error': $ctrl.user.name.invalid }" style="position: relative;">
+                          <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                            placeholder="Họ và tên không bỏ dấu" ng-model="$ctrl.user.name.value"
+                            ng-blur="$ctrl.user.name.validate()" id="name">
+                        </div>
+                      </div>
+                      <div class="form-group name ng-scope" ng-if="$ctrl.user.name.visible">
+                        <label class="col-sm-2 control-label">
+                          <span translate="Register_Real_Name" class="ng-scope">Số điện thoại</span>
+                        </label>
+                        <div class="col-sm-6 ng-isolate-scope" field-error=""
+                          field-error-title="$ctrl.user.name.errorMessage" field-error-is-open="$ctrl.user.name.invalid"
+                          ng-class="{ 'has-error': $ctrl.user.name.invalid }" style="position: relative;">
+                          <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                            ng-model="$ctrl.user.name.value" ng-blur="$ctrl.user.name.validate()" id="phone"
+                            placeholder="Dùng số điện thoại thật để lấy lại mật khẩu" value="+84">
+                        </div>
+                      </div>
+
+                      <div class="form-group name ng-scope" ng-if="$ctrl.user.name.visible">
+                        <label class="col-sm-2 control-label">
+                          <span translate="Register_Real_Name" class="ng-scope">Mã đại lý</span>
+                        </label>
+                        <div class="col-sm-6 ng-isolate-scope" field-error=""
+                          field-error-title="$ctrl.user.name.errorMessage" field-error-is-open="$ctrl.user.name.invalid"
+                          ng-class="{ 'has-error': $ctrl.user.name.invalid }" style="position: relative;">
+                          <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
+                            placeholder="Vui lòng nhập mã đại lý của bạn (Nếu có)" ng-model="$ctrl.user.name.value"
+                            ng-blur="$ctrl.user.name.validate()" id="refcode">
+                        </div>
+                      </div>
+                   
+                    </fieldset>
+                    <fieldset style="border: none; text-align: center;">
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" style="padding: 15px 30px; text-transform: uppercase;
+                          border: none;
+                          border-radius: 5px;
+                          font-size: 17px;
+                          font-weight: 500;
+                          color: #fff;
+                          background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
+                          cursor: pointer;" class="btn btn-default _1SkHEsu5miBpcpNXUNtIoM">
+                            <span ng-if="!$ctrl.registerPending" translate="Register_Sign_Up" class="ng-scope">Đăng ký
+                              ngay</span>
+                          </button>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+              </gupw-register-form>
+            </div>
+          </article>
+        </gupw-register>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Notify -->
+  <div uib-modal-window="modal-window" class="modal _1M8UeeUNQsZy4H6GAA2notify fade ng-scope ng-isolate-scope in"
+    role="dialog" size="sm" index="1" animate="animate"
+    ng-style="{'z-index': 1050 + $$topModalIndex*10, display: 'block'}" tabindex="-1" uib-modal-animation-class="fade"
+    modal-in-class="in" modal-animation="true" style="z-index: 1060; display: none;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content" uib-modal-transclude="">
+        <gupw-dialog-alert resolve="$resolve" modal-instance="$uibModalInstance" close="$close($value)"
+          dismiss="$dismiss($value)" class="ng-scope ng-isolate-scope">
+          <div class="modal-header">
+            <h4 class="ze8tEtJj_ZjnERvE_Rkertitle ng-scope" translate="Common_Prompt"></h4>
+          </div>
+          <div class="modal-body">
+            <div bind-html-compile="$ctrl.content" class="ze8tEtJj_ZjnERvE_Rkercontent">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div>
+              <button class="btn btn-primary ng-scope ze8tEtJj_ZjnERvE_Rkerclose" ng-click="$ctrl.ok()"
+                translate="Common_Confirm">Đóng</button>
+            </div>
+          </div>
+        </gupw-dialog-alert>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal BackDrop -->
+  <div uib-modal-backdrop="modal-backdrop" class="modal-backdrop fade ng-scope in"
+    ng-style="{'z-index': 1040 + (index &amp;&amp; 1 || 0) + index*10}" uib-modal-animation-class="fade"
+    modal-in-class="in" modal-animation="true" data-bootstrap-modal-aria-hidden-count="1" aria-hidden="true"
+    style="z-index: 1040; display: none;">
+  </div>
+
+  <div id="app">
+    <header>
+      <section class="header-top">
+        <div>
+          <div class="header-top-left">
+            <% if(dataPage.session.user) {%>
+              <a role="button" tabindex="0" href="/account/deposit" class="btn btn-secondary">
+                NẠP TIỀN
+              </a>
+              <a role="button" tabindex="0" href="/account/withdraw" class="btn btn-secondary">
+                RÚT TIỀN
+              </a>
+              <%}%>
+          </div>
+
+          <% if (dataPage.session.user) { %>
+            <div class="header-top-right">
+              <div style="display: flex;align-items: center;gap: 10px;">
+                <i style="font-size: 30px;color: #fd0d00;padding-right: 10px;border-right: 2px solid;"
+                  class="fa-solid fa-circle-info"></i>
+                <a style="text-decoration: none;color: #fffd;" href="/account/agency">Khu vực đại lý</a>
+              </div>
+              <div style="display: flex;align-items: center;gap: 10px;">
+                <i style="font-size: 30px;color: #fd0d00;padding-right: 10px;border-right: 2px solid;"
+                  class="fa-solid fa-user"></i>
+                <div>
+                  <p style="color: #fff;" class="_3lymj_9N-oJ2lPh20o6tzf">
+                    <%=dataPage.session.user.username%>
+                  </p>
+                  <div style="display: flex; align-items: center;">
+                    <p style="color: #fff;" class="balance HU9oLicjLil3hDKujppTr header-balance">
+                      <%=dataPage.helpers.numberWithCommas(dataPage.session.user.coin / 1000)%> K
+                    </p>
+                    <span id="reloadBalanceBtn"
+                      style="color: #ffffff; font-size: 12px; margin-left: 6px;cursor:pointer;"><i
+                        class="fa fa-refresh"></i></span>
+                  </div>
+
+                </div>
+              </div>
+              <div>
+                <button style="background: transparent; border: none; cursor: pointer;" type="button"
+                  class="btn btn-link _1TEhFF5lWfbkg-wGKQap0W" id="logoutButton">
+                  <i style="font-size: 30px;color: #fd0d00;" class="fa-solid fa-right-from-bracket"></i>
+                </button>
+              </div>
+            </div>
+            <% } %>
+
+              <% if (!dataPage.session.user) { %>
+                <div ng-if="!$ctrl.isLogin" ng-class="$ctrl.styles.btn" class="ng-scope _3OFBD2SMU4R067-Il-FmFs">
+                  <button ng-class="$ctrl.styles.login" ng-click="$ctrl.openLoginModal()" type="button"
+                    translate="Shared_Login" class="login _2mBNgBjbvImj-b_6WuwAFm">ĐĂNG NHẬP</button>
+                  <button id="reg" ng-class="$ctrl.styles.reg" ng-click="$ctrl.openRegisterModal()" type="button"
+                    translate="Shared_Nav_JoinUs" class="register ppUNnOlkVUpue-NNt6vxo">ĐĂNG KÝ</button>
+                </div>
+                <% } %>
+        </div>
+      </section>
+      <section class="header-bottom">
+        <div ng-class="$ctrl.styles.wrapper" class="TFkX-2VIsaFZW7t64YI07">
+          <nav ng-class="$ctrl.styles.nav" class="_4GFFQME3VxQOLaxRzBxeQ">
+            <ul>
+              <li style="text-align: left;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+                class="live">
+                <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav"
+                    class="ng-isolate-scope">CASINO</span> </a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SE Trực Tuyến">
+                          <img ng-src="/images/Casino/SE.png" src="/images/Casino/SE.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="WM Trực Tuyến">
+                          <img ng-src="/images/Casino/WM.png" src="/images/Casino/WM.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="DG Trực Tuyến">
+                          <img ng-src="/images/Casino/DG.png" src="/images/Casino/DG.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="GP Trực Tuyến">
+                          <img ng-src="/images/Casino/GPI.png" src="/images/Casino/GPI.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="PP Trực Tuyến">
+                          <img ng-src="/images/Casino/PP.png" src="/images/Casino/PP.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="EG Trực Tuyến">
+                          <img ng-src="/images/Casino/EG.png" src="/images/Casino/EG.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SA Trực Tuyến">
+                          <img ng-src="/images/Casino/SA.png" src="/images/Casino/SA.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="DB Trực Tuyến">
+                          <img ng-src="/images/Casino/DB.png" src="/images/Casino/DB.png">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+
+              <li style="text-align: left;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+                class="sport">
+                <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav" class="ng-isolate-scope">THỂ
+                    THAO</span>
+                </a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8" style="left: 50%; transform: translateX(-50%);">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SB Thể Thao">
+                          <img ng-src="/images/Sport/SABA.png" src="/images/Sport/SABA.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="CMD Thể Thao">
+                          <img ng-src="/images/Sport/CMD.png" src="/images/Sport/CMD.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="UG2 Thể Thao">
+                          <img ng-src="/images/Sport/UG.png" src="/images/Sport/UG.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SBO Thể Thao">
+                          <img ng-src="/images/Sport/SBO.png" src="/images/Sport/SBO.png">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+
+              <li style="text-align: left" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+                class="board">
+                <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav" class="ng-isolate-scope">
+                    GAMES</span>
+                </a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8" style="left: 50%; transform: translateX(-50%);">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="JL Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/gameSlot/JL.jpg"
+                            src="/images/gameSlot/JL.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0165 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/gameSlot/dog.png"
+                            src="/images/gameSlot/dog.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0166 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/aztecgems.jpg" src="/images/gameSlot/aztecgems.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0228 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/lions.jpg" src="/images/gameSlot/lions.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0183 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/cowgold.jpg" src="/images/gameSlot/cowgold.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0213 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/pandagold.jpg" src="/images/gameSlot/pandagold.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0238 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/pbonanza.jpg" src="/images/gameSlot/pbonanza.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0210 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/shammthor.jpg" src="/images/gameSlot/shammthor.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0135 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/waysrhino.jpg" src="/images/gameSlot/waysrhino.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0315 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/wildwest.jpg" src="/images/gameSlot/wildwest.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0739 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/fruitsw.jpg" src="/images/gameSlot/fruitsw.jpg">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
+                          data-game="PP0253 Game Bài">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;"
+                            ng-src="/images/gameSlot/tweethouse.jpg" src="/images/gameSlot/tweethouse.jpg">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+
+              <li style="text-align: right; margin-left: 5%;" ng-repeat="nav in $ctrl.navigation"
+                ng-class="{ 'active': nav.isActive }" class="cock">
+                <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav" class="ng-isolate-scope">ĐÁ
+                    GÀ</span> </a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8" style="left: 50%; transform: translateX(-50%);">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="WS168 Đá Gà">
+                          <img ng-src="/images/Cookfight/DAGA.png" src="/images/Cookfight/DAGA.png">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+
+              <li style="text-align: center; padding-left: 25px"> <a href="/thongTinDaiLy/profile" chat-link=""
+                  class="ng-scope" style="color: #fff;">ĐẠI LÝ</a>
+              </li>
+
+              <li style="text-align: right;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+                class="promotion"> <a onclick="window.location='/Promotion'" ng-click="nav.click($event)"> <span
+                    nav-link-display="" model="nav" class="ng-isolate-scope">KHUYẾN MÃI</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <a class="logomain" href="/">
+            <img src="/images/logo2.png">
+          </a>
+        </div>
+      </section>
+    </header>
+
+  </div>
+
+  <!-- Modal chuyen quy -->
+  <div id="game-transfer-wallet-modal-container"></div>
+
+  <div id="popup-login">
+    <div class="popup-login--overlay"></div>
+    <div class="popup-login--content">
+      <img src="/images/pop-up-login.png" alt="pop-up-login.png">
+      <i class="fa-regular fa-rectangle-xmark" id="close-popup"></i>
+    </div>
+  </div>
+
+
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const popupLogin = document.getElementById("popup-login");
+    // Kiểm tra trạng thái của popup từ localStorage
+    if (!localStorage.getItem("popupClosed")) {
+      popupLogin.style.display = "block";
+    }
+    if (localStorage.getItem("popupClosed")) {
+      popupLogin.style.display = "none";
+    }
+
+    if (popupLogin) {
+      popupLogin.onclick = function () {
+        popupLogin.style.display = "none";
+        localStorage.setItem("popupClosed", "true");
+      };
+    }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YS1SVDJVJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-YS1SVDJVJF');
+</script>
+<script>
+  let isLogin = false;
+  let bearerToken = "";
+  let mainApi = "<%=dataPage.config.MAIN_API%>";
+</script>
+<% if (dataPage.session.user) { %>
+  <script>
+    isLogin = true;
+    bearerToken = "<%=dataPage.session.accessToken%>";
+  </script>
+  <% } %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="/core/js/custom/helpers.js"></script>
+    <!-- FONT AWESOME -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
+      integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- TOASTR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+      integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- scrolled header -->
+    <script>
+      window.addEventListener('scroll', function () {
+        const header = document.querySelector('header');
+        if (window.scrollY > 0) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    </script>
+
+</html>

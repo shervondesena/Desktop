@@ -1,0 +1,28 @@
+<%- include('../../includes/header') %>
+<div
+  ng-class="$ctrl.styles.content"
+  class="BDw45cKhOY5X-HJyc5_2C _2Qr8R07mMXKa3GCsGT1Jx0"
+>
+  <div ng-class="$ctrl.styles.wrapper" class="_1h0fCbtWimc44r9dNSenvs">
+    <!-- uiView: -->
+    <ui-view class="ng-scope">
+      <gupw-member-center-layout class="ng-scope ng-isolate-scope">
+        <div class="gSkJpAc7IrbXlj3biLk1e">
+          <div class="_5kpYNqHFkQun8HWfr-YDg">
+            <!-- SIDEBAR MENU -->
+            <%- include('./sidebar') %>
+            <!-- END SIDEBAR MENU -->
+
+            <div ng-class="$ctrl.styles.detail" class="_1OOV-q3ssZv9VpaFEYYwdD">
+              <h2 style="font-size: 17px;margin: 0;background: #ffffff26;padding: 20px;width: 60%;border-radius: 12px;color: #e9cb2e;">
+                <%=dataPage.msg%>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </gupw-member-center-layout>
+    </ui-view>
+  </div>
+</div>
+
+<%- include('../../includes/footer') %>

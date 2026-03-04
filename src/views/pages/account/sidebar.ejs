@@ -1,0 +1,67 @@
+<div class="NMMFlKUD4h5ITLiRUaVhE" id="sidebar-right">
+    <section>
+        <i class="fas fa-user-circle"></i>
+        <div class="g5UAxxGS5PCGmIpl_Gv_7">
+            <span class="ng-scope">Tài Khoản</span>
+            <span class="ng-binding sidebar-name">
+                <%=dataPage.session.user.username%>
+            </span>
+        </div>
+        <div class="VCWc1xD16JjHVQV5T2QFm">
+            <span class="ng-scope">Số dư</span>
+            <span>:</span>
+            <span class="ng-binding _2kiO79mWzuPtUlVD3NTg1L sidebar-balance">
+                <%=dataPage.helpers.numberWithCommas(dataPage.session.user.coin)%>
+            </span> <span class="_1Xfqx_F_JJDoIzF5z2jYbw">VND</span>
+        </div>
+    </section>
+
+    <ul ng-class="$ctrl.styles.newMoneyFunction" class="_3XHO2UA0RB0rER4aWKSeqO">
+        <li style="margin-right: 2px;" class="<%=(dataPage.location=='deposit')?'active':'';%>">
+            <a ui-sref="deposit" href="/account/deposit">
+                <i style="font-size: 30px; margin-bottom: 10px;" class="fas fa-donate"></i>
+                <span class="ng-scope">Nạp tiền</span>
+            </a>
+        </li>
+        <li class="<%=(dataPage.location=='withdraw')?'active':'';%>">
+            <a ui-sref="withdraw" href="/account/withdraw">
+                <i style="font-size: 30px; margin-bottom: 10px;" class="fas fa-hand-holding-usd"></i>
+                <span translate="MemberCenter_Withdraw" class="ng-scope">Rút
+                    tiền</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="_1zBBtO83fFSEPTlrAwj7Vm">
+        <li class="<%=(dataPage.location=='transaction-history')?'active':'';%>">
+            <a ui-sref="transaction" href="/account/finan-history">
+                <i class="fas fa-clipboard-list fa-fw"></i>
+                <span class="ng-scope">Chi tiết giao dịch</span>
+            </a>
+        </li>
+        <li class="<%=(dataPage.location=='security')?'active':'';%>">
+            <a ui-sref="security-list" href="/account/security">
+                <i class="fas fa-user-shield fa-fw"></i>
+                <span class="ng-scope">Cài Đặt Bảo Mật</span>
+            </a>
+        </li>
+        <li class="<%=(dataPage.location=='inbox')?'active':'';%>">
+            <a ui-sref="site-mail" href="/account/inbox">
+                <i class="fas fa-envelope"></i>
+                <span class="ng-scope">Thư nội bộ</span>
+            </a>
+        </li>
+        <li class="<%=(dataPage.location=='game-history')?'active':'';%>">
+            <a ui-sref="bet-record" href="/account/game-history">
+                <i class="fas fa-history fa-fw"></i>
+                <span class="ng-scope">Lịch sử đặt cược</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-money-bill"></i>
+                <span class="ng-scope">Hoàn Trả</span>
+            </a>
+        </li>
+    </ul>
+</div>

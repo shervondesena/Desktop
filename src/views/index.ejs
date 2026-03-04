@@ -1,0 +1,157 @@
+<%- include('includes/header') %>
+
+  <style>
+    .Hra33TxtHu1C-vZkxSDi7 {
+      position: absolute;
+      z-index: 1;
+      height: 40px;
+      width: 100%;
+      background-color: #ffffff12;
+    }
+
+    ._2f-DvVLvelwJOC7_a45SIc {
+      position: relative;
+      width: 1200px;
+      margin: 0 auto;
+      height: 40px;
+    }
+
+    ._1HKJOEgSu0SSPbgkWjI0rQ {
+      position: absolute;
+      line-height: 40px;
+      color: #f8ad34;
+      font-size: 16px;
+    }
+    
+
+    .W9N3001mLDTkKCM5ar8j9 {
+      white-space: nowrap;
+      overflow: hidden;
+      margin-left: 200px;
+    }
+
+    ._3O7S0w3esoWg5PVs5ZLUi2 {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+
+    .W9N3001mLDTkKCM5ar8j9 li {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 5px;
+      color: #fff;
+      font-size: 16px;
+      text-decoration: none;
+      line-height: 40px;
+    }
+  </style>
+
+  <!-- BANNER SLIDE -->
+  <div style="padding-top: 130px; height: fit-content;">
+    <section>
+      <div ng-class="$ctrl.styles.slide"
+        class="swiper mySwiperBanner swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+        <div class="swiper-wrapper" id="swiper-wrapper-57589196c97db227">
+          <% const images=[ { url: '/images/banner-slide/1.png' , link: '/account/deposit' }, {url: '/images/banner-slide/2.png' , link: '/account/deposit' }, {url: '/images/banner-slide/3.png' , link: '/account/deposit' } ]; images.forEach((item, index)=> {
+            %>
+            <div class="swiper-slide" role="group" style="width: 1394px">
+              <a href="javascript:window.location='<%= item.link %>';">
+                <img src="<%= item.url %>" class="slide-img ls-is-cached lazyloaded"
+                  style="cursor: pointer; width: 100%" />
+              </a>
+            </div>
+            <% }); %>
+        </div>
+      </div>
+      <div class="swiper-scrollbar"></div>
+    </section>
+  </div>
+
+  <gupw-hot-news class="ng-isolate-scope">
+    <!-- ngIf: $ctrl.newsVisible -->
+    <div ng-class="$ctrl.styles.wrapper" ng-if="$ctrl.newsVisible" class="ng-scope Hra33TxtHu1C-vZkxSDi7">
+      <div ng-class="$ctrl.styles.layer" class="_2f-DvVLvelwJOC7_a45SIc">
+        <span ng-class="$ctrl.styles.title" translate="Shared_NewsInfo" class="ng-scope _1HKJOEgSu0SSPbgkWjI0rQ">
+          <i class="fa-solid fa-volume-high"></i> THÔNG BÁO MỚI NHẤT: </span>
+        <div ng-class="$ctrl.styles['hot-news']" class="W9N3001mLDTkKCM5ar8j9">
+          <div marquee="" style="display: block;">
+            <div
+              style="width: 100000px; transform: translateX(1030px); animation: 226.335s linear 0s infinite normal none running marqueeAnimation-8325873;"
+              class="js-marquee-wrapper">
+              <div class="js-marquee" style="margin-right: 0px; float: left;">
+                <ul ng-class="$ctrl.styles['news-list']" class="_3O7S0w3esoWg5PVs5ZLUi2">
+                  <!-- ngRepeat: item in $ctrl.list -->
+                  <li ng-repeat="item in $ctrl.list" ng-click="$ctrl.go(item)" class="ng-binding ng-scope">
+                    <%=dataPage.session.siteConfig.site_brand_marquee;%>
+                  </li>
+                  <!-- end ngRepeat: item in $ctrl.list -->
+                </ul>
+              </div>
+            </div>
+          </div>
+          <ng-transclude></ng-transclude>
+        </div>
+      </div>
+    </div>
+  </gupw-hot-news>
+
+  <!-- MAIN -->
+  <section class="main">
+    <div class="container" style="position: relative; height: 100%;">
+      <div class="main__logo">
+        <img src="./images/logongang.png" alt="logongang">
+      </div>
+      <div class="main__content">
+        <div class="main__content__left">
+          <img src="./images/daisu/daisu.png" alt="daisu">
+        </div>
+        <div class="main__content__right">
+          <img src="./images/daisu/thuonghieu-1.png" alt="thuonghieu-1">
+          <img src="./images/daisu/thuonghieu-2.png" alt="thuonghieu-2">
+          <img src="./images/daisu/thuonghieu-3.png" alt="thuonghieu-3">
+          <img src="./images/daisu/thuonghieu-4.png" alt="thuonghieu-4">
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- KM HOT -->
+  <section class="main-promotions">
+    <div class="container">
+      <div class="head-red-container">
+        <h2>KHUYẾN MÃI HOT TẠI SODO: </h2>
+      </div>
+      <div class="main-promotions-content">
+        <img onclick="window.location='/Promotion'" src="./images/khuyenmai/1.png" alt="1.png">
+        <img onclick="window.location='/Promotion'" src="./images/khuyenmai/2.png" alt="1.png">
+        <img onclick="window.location='/Promotion'" src="./images/khuyenmai/3.png" alt="1.png">
+        <img onclick="window.location='/Promotion'" src="./images/khuyenmai/5.png" alt="1.png">
+      </div>
+    </div>
+    <div class="container">
+      <div class="head-red-container" style="margin-top: 5rem;">
+        <h2>GAME HOT TẠI SODO: </h2>
+      </div>
+      <div class="main-games-content">
+        <div class="top">
+          <img onclick="window.location='/'" src="./images/gamehot/livecasino.png" alt="livecasino.png">
+          <img onclick="window.location='/'" src="./images/gamehot/thethao.png" alt="thethao.png">
+          <img onclick="window.location='/'" src="./images/gamehot/banca.png" alt="banca.png">
+          <img onclick="window.location='/'" src="./images/gamehot/xosolive.png" alt="xosolive.png">
+        </div>
+        <div class="bot">
+          <img onclick="window.location='/'" src="./images/gamehot/daga.png" alt="daga.png">
+          <img onclick="window.location='/'" src="./images/gamehot/doikhang.png" alt="doikhang.png">
+          <img onclick="window.location='/'" src="./images/gamehot/gameslot.png" alt="gameslot.png">
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- SCRIPT -->
+    <script src="/core/js/lobby/homepage.js"></script>
+
+    <%- include('includes/footer') %>

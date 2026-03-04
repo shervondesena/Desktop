@@ -1,0 +1,498 @@
+<%- include('../../includes/header') %>
+    <style>
+        .zopmijz8rytdZWDDDhpNu {
+            display: flex;
+            width: 100%;
+            margin: 0 0 20px;
+            overflow-x: auto;
+        }
+
+        .list-inline {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .zopmijz8rytdZWDDDhpNu li {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 222px;
+            height: 72px;
+            margin: 0;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            background: #262626;
+            border-radius: 10px;
+            box-sizing: border-box;
+            border: 3px solid #262626;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .zopmijz8rytdZWDDDhpNu li i.add {
+            mask: url(/images/bank-icon-2.svg);
+            background-repeat: no-repeat;
+        }
+
+        .zopmijz8rytdZWDDDhpNu li i {
+            width: 48px;
+            height: 35px;
+            margin-right: 5px;
+            background-color: #f9bb1f;
+        }
+
+        .zopmijz8rytdZWDDDhpNu li:hover,
+        .zopmijz8rytdZWDDDhpNu li.active {
+            border-color: #fe4d01;
+        }
+
+        ._74QR1YC5jN2v1_8-p0t7B {
+            padding: 20px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            background: #262626;
+            border-radius: 10px;
+        }
+
+        ._1XYnvVSc_zEv3kNu71jQwo {
+            width: 450px;
+        }
+
+        ._1XYnvVSc_zEv3kNu71jQwo ul {
+            display: flex;
+            flex-flow: wrap;
+            margin: 0 0 20px;
+            padding: 0;
+        }
+
+        ._1XYnvVSc_zEv3kNu71jQwo li:hover,
+        ._1XYnvVSc_zEv3kNu71jQwo li.active {
+            color: #000;
+            background: #fe4d01;
+        }
+
+        ._1XYnvVSc_zEv3kNu71jQwo li {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 146px;
+            height: 40px;
+            margin: 0 6px 5px 0;
+            color: #fff;
+            font-size: 15px;
+            background: #444;
+            border-radius: 10px;
+            box-sizing: border-box;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        ._1XYnvVSc_zEv3kNu71jQwo li:hover i,
+        ._1XYnvVSc_zEv3kNu71jQwo li.active i {
+            background-color: #000;
+        }
+
+        ._1XYnvVSc_zEv3kNu71jQwo li i {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            background-color: #fff;
+            mask: url(/images/bank-icon-3.svg) no-repeat center;
+            mask-size: contain;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-lg {
+            padding: 10px 16px;
+            font-size: 18px;
+            line-height: 1.3333333;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+    </style>
+    <style>
+        /* Animation for sliding down */
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Modal container */
+        .modalLucky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 9999 !important;
+        }
+
+        /* Modal content */
+        .modal-content-lucky {
+            height: 707px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .modal-content-lucky .item {
+            background: linear-gradient(to bottom, #fc0 70%, rgba(255, 204, 0, 0) 100%);
+            position: relative;
+            height: 350px;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+            padding: 1rem
+        }
+
+        .modal-content-lucky .item img {
+            cursor: pointer;
+        }
+
+        .modal-content-lucky .item .item-header {
+            padding: 0 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content-lucky .item .item-header p {
+            background: black;
+            border-radius: 5px;
+            padding: 10px;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes flyUp {
+            0% {
+                transform: translateY(150px);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translateY(70px);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .luckymoney {
+            animation: pulse 1s infinite;
+        }
+
+        .moneyopen {
+            animation: flyUp 1s linear;
+        }
+    </style>
+    <div ng-class="$ctrl.styles.content" class="BDw45cKhOY5X-HJyc5_2C _2Qr8R07mMXKa3GCsGT1Jx0">
+
+        <div ng-class="$ctrl.styles.wrapper" class="_1h0fCbtWimc44r9dNSenvs">
+            <!-- uiView: -->
+            <ui-view class="ng-scope">
+                <gupw-member-center-layout class="ng-scope ng-isolate-scope">
+                    <div ng-class="$ctrl.styles.wrapper" class="gSkJpAc7IrbXlj3biLk1e">
+                        <div ng-class="$ctrl.styles.main" class="_5kpYNqHFkQun8HWfr-YDg">
+
+
+                            <!-- SIDEBAR MENU -->
+                            <%- include('./sidebar') %>
+                                <!-- END SIDEBAR MENU -->
+
+                                <div ng-class="$ctrl.styles.detail" class="_1OOV-q3ssZv9VpaFEYYwdD">
+
+                                    <ul class="list-unstyled list-inline zopmijz8rytdZWDDDhpNu"
+                                        ng-class="$ctrl.styles['type-tab']">
+                                        <!-- ngRepeat: tab in $ctrl.viewModel.tabs -->
+                                        <li ng-repeat="tab in $ctrl.viewModel.tabs"
+                                            ng-click="$ctrl.viewModel.selectTab(tab)"
+                                            ng-class="{ 'active': tab.isActive }" class="ng-binding ng-scope active"> <i
+                                                ng-class="tab.class" class="add"> </i> Thêm ngân hàng </li>
+                                        <!-- end ngRepeat: tab in $ctrl.viewModel.tabs -->
+                                    </ul>
+
+                                    <div ng-class="$ctrl.styles.main" class="_74QR1YC5jN2v1_8-p0t7B">
+
+                                        <section ng-if="$ctrl.viewModel.visible" class="ng-scope bankUserAddForm">
+                                            <div ng-class="$ctrl.styles.main" class="_74QR1YC5jN2v1_8-p0t7B">
+                                                <!-- ngIf: $ctrl.viewModel.bankAccountForm -->
+                                                <section ng-if="$ctrl.viewModel.bankAccountForm"
+                                                    ng-class="$ctrl.styles['add-bank']"
+                                                    class="ng-scope _1XYnvVSc_zEv3kNu71jQwo">
+                                                    <ul class="list-unstyled list-inline">
+                                                        <li ng-repeat="tab in $ctrl.viewModel.bankAccountForm.tabs"
+                                                            ng-click="$ctrl.viewModel.bankAccountForm.clickTab(tab)"
+                                                            ng-class="{ 'active': tab.isActive }"
+                                                            class="ng-scope active"> <i ng-class="tab.class"
+                                                                class="bank"> </i>
+                                                            <span ng-if="tab.i18nKey"
+                                                                translate="WithdrawApplication_BankCard"
+                                                                class="ng-scope">Ngân
+                                                                hàng</span>
+                                                        </li>
+                                                    </ul>
+                                                    <form ng-submit="$ctrl.onBankAccountSubmit()" novalidate=""
+                                                        id="userAddBankForm" class="ng-pristine ng-valid">
+                                                        <section ng-if="$ctrl.viewModel.bankAccountForm.isBankTab"
+                                                            class="ng-scope">
+                                                            <div class="form-group"> <label
+                                                                    class="control-label ng-scope"
+                                                                    translate="Common_BankName">Ngân hàng</label>
+                                                                <select id="bankProvideUserAdd"
+                                                                    ng-model="$ctrl.viewModel.bankAccountForm.bankName.value"
+                                                                    class="form-control ng-pristine ng-valid ng-not-empty ng-touched"
+                                                                    ng-options="value.display for value in $ctrl.viewModel.bankAccountForm.bankOptions | orderBy:'sort' ">
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group ng-scope"
+                                                                ng-if="$ctrl.viewModel.bankAccountForm.city.visible">
+                                                                <label class="control-label ng-binding">Tên chủ tài
+                                                                    khoản</label>
+                                                                <input type="text" id="bankNameUserAdd"
+                                                                    class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                                                                    ng-model="$ctrl.viewModel.bankAccountForm.city.value">
+                                                            </div>
+                                                            <div class="form-group"
+                                                                ng-class="{ 'has-error': $ctrl.viewModel.bankAccountForm.account.invalid }">
+                                                                <label class="control-label ng-scope"
+                                                                    translate="Common_BankAccount">Số tài khoản</label>
+                                                                <input id="bankNumberUserAdd"
+                                                                    ng-model="$ctrl.viewModel.bankAccountForm.account.value"
+                                                                    class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                                                                    type="number"
+                                                                    placeholder="ví dụ：6227002020690175526"
+                                                                    ng-change="$ctrl.viewModel.bankAccountForm.onAccountChanged()"
+                                                                    uib-tooltip-template="'ngTemplateAccountInvalid'"
+                                                                    tooltip-is-open="$ctrl.viewModel.bankAccountForm.account.invalid"
+                                                                    tooltip-trigger="'none'">
+                                                            </div>
+                                                        </section>
+                                                        <div class="form-group">
+                                                            <button type="submit"
+                                                                class="btn btn-default btn-lg ng-scope"
+                                                                style="width: 100%; color: #ffffff; background-color: #fe4d01; border: none;">Gửi
+                                                                đi</button>
+                                                        </div>
+                                                    </form>
+                                                </section>
+                                            </div>
+                                        </section>
+
+
+                                        <section class="ng-scope _1XYnvVSc_zEv3kNu71jQwo withdrawForm">
+                                            <form novalidate="" class="ng-pristine ng-valid" id="form-withdraw">
+                                                <section ng-if="$ctrl.viewModel.bankAccountForm.isBankTab"
+                                                    class="ng-scope">
+                                                    <div class="form-group">
+                                                        <label class="control-label ng-scope"
+                                                            translate="Common_BankName">Ngân hàng</label>
+                                                        <select
+                                                            class="form-control ng-pristine ng-valid ng-not-empty ng-touched"
+                                                            id="bankProvide">
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group ng-scope">
+                                                        <label class="control-label ng-binding">Chủ tài khoản</label>
+                                                        <input type="text"
+                                                            class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                                                            placeholder="ví dụ : Nguyen Van A" id="bankName" disabled>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label ng-scope">Số tài khoản</label>
+                                                        <input
+                                                            class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                                                            type="number" id="bankNumber"
+                                                            placeholder="ví dụ：6227002020690175526" disabled>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label ng-scope">Số tiền rút</label>
+                                                        <input
+                                                            class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                                                            type="text" id="amountWithdraw" value="0" oninput="">
+                                                    </div>
+
+                                                    <div class="form-group ng-scope">
+                                                        <label class="control-label ng-binding">Mật khẩu bảo mật</label>
+                                                        <input type="password"
+                                                            class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                                                            placeholder="mật khẩu bảo mật tài khoản..." id="passwd">
+                                                    </div>
+
+                                                </section>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-default btn-lg ng-scope"
+                                                        style="width: 100%; color: #ffffff; background-color: #fe4d01; border: none;">Thanh
+                                                        toán ngay bây giờ</button>
+                                                </div>
+                                            </form>
+                                        </section>
+                                    </div>
+
+                                </div>
+                        </div>
+                    </div>
+                </gupw-member-center-layout>
+            </ui-view>
+        </div>
+    </div>
+    <!-- Modal Lucky Money -->
+    <div class="modalLucky">
+        <div class="modal-content-lucky" style="background: url(/images/frameSodo.png) no-repeat center top;">
+            <div class="item item-close">
+                <img class="luckymoney" src="/images/luckymoney.png" alt="">
+                <div class="item-header">
+                    <p>Chỉ hiển thị 1 lần duy nhất</p>
+                </div>
+                <p style="color: #0d00ff; margin-bottom: 10px;">SODO79 thưởng phong bì dành cho 100 khách hàng may mắn
+                    trong
+                    ngày</p>
+                <i style="font-size: 15px;">Phần thưởng sẽ kết thúc sau <span>90 giây</span></i>
+            </div>
+            <div class="item item-open" style="display: none;">
+                <img class="luckymoneyopen" style="width: 250px;" src="/images/luckymoneyopen.png" alt="">
+                <img class="moneyopen" style="width: 200px;position: absolute;top: 12px;left: 55px;"
+                    src="/images/moneyopen.png" alt="">
+                <div style="position: absolute;width: 220px;left: 13%;top: 15rem; cursor: pointer;">
+                    <p
+                        style="border-radius:5px;font-size: 18px ;background: linear-gradient(to bottom, #ff3 0, #f93 100%);padding: 15px;color: #db2711;font-weight: 500;">
+                        Vui vẻ thu lại thôi</p>
+                </div>
+                <div style="position: absolute;top: 27%;left: 38%;">
+                    <span id="set_amount_of_lucky" style="font-size: 20px; color: red; font-weight: 500;"></span>
+                    <span style="font-size: 20px; color: red; font-weight: 500;">K</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Lucky -->
+    <script>
+
+        $.ajax({
+            url: "<%=dataPage.config.MAIN_API%>/api/luckymoney/check",
+            method: "GET",
+            timeout: 0,
+            headers: {
+                "Authorization": "Bearer <%=dataPage.session.accessToken%>",
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            success: function (response) {
+                // Nếu kết quả trả về status là true, hiển thị modal và set amount
+                if (response.status === true) {
+                    // Set số tiền vào phần tử có id là "set_amount_of_lucky"
+                    document.getElementById("set_amount_of_lucky").textContent = parseInt(response.amount / 1000).toLocaleString('vi-VN');
+
+                    // Hiển thị modalLucky bằng flex
+                    document.querySelector('.modalLucky').style.display = 'flex';
+                } else {
+                    console.log("Không đủ điều kiện nhận Lucky Money");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Đã xảy ra lỗi: ", error);
+            }
+        });
+
+        // Xử lý sự kiện click trên modalLucky để mở/đóng các phần tử
+        document.querySelector('.modalLucky').addEventListener('click', function () {
+            const itemClose = document.querySelector('.item-close');
+            const itemOpen = document.querySelector('.item-open');
+            const modal = document.querySelector('.modalLucky');
+
+            if (itemClose.style.display !== 'none') {
+                // Nếu item-close đang hiển thị, ẩn nó và hiện item-open
+                itemClose.style.display = 'none';
+                itemOpen.style.display = 'block';
+                // Gui api xac nhan lay bao li xi
+                $.ajax({
+                    url: "<%=dataPage.config.MAIN_API%>/api/luckymoney/confirmGet",
+                    method: "GET",
+                    timeout: 0,
+                    headers: {
+                        "Authorization": "Bearer <%=dataPage.session.accessToken%>",
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    success: function (response) {
+                        if (response.status === true) {
+                            
+                        } else {
+                            alert("Không thể nhận lì xì: " + response.msg);
+                            modal.style.display = 'none';
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Đã xảy ra lỗi: ", error);
+                    }
+                });
+            } else {
+                // Nếu item-open đang hiển thị, ẩn toàn bộ modal
+                modal.style.display = 'none';
+                location.reload();
+            }
+        });
+    </script>
+
+    <script src="/core/js/account/withdraw.js"></script>
+    <%- include('../../includes/footer') %>
