@@ -59,7 +59,7 @@ $(document).ready(function () {
   const fonts = ["cursive", "sans-serif", "serif", "monospace"];
   let captchaValue = "";
   function generateCatpcha() {
-    let value = '';
+    let value = "";
     for (let i = 0; i < 4; i++) {
       value += Math.floor(Math.random() * 10);
     }
@@ -97,7 +97,12 @@ $(document).ready(function () {
   });
   // Login Button Click Hide
   $("._38xNbPhu8VneFOc5oh78Hr").on("click", function () {
-    initAuthModal(true, false);
+    var isRegister = $(this).closest(".modal-register").length > 0;
+    if (isRegister) {
+      initAuthModal(false, false);
+    } else {
+      initAuthModal(true, false);
+    }
   });
   // Register Button Click Show
   $(".ppUNnOlkVUpue-NNt6vxo").on("click", function () {
@@ -121,7 +126,7 @@ $(document).ready(function () {
   $("#loginForm").on("submit", function (event) {
     event.preventDefault();
     let inputCaptchaValue = document.querySelector(
-      ".modal-login .captcha input"
+      ".modal-login .captcha input",
     ).value;
     if (inputCaptchaValue === captchaValue) {
       debouncedLoginPOST(event);
@@ -143,7 +148,7 @@ $(document).ready(function () {
   });
   // add phone and email to form register
   $("#registerForm input#email").val(
-    `guest000${RandomUserName(8).toLowerCase()}@gmail.com`
+    `guest000${RandomUserName(8).toLowerCase()}@gmail.com`,
   );
   //$('#registerForm input#phone').val(randomPhone());
 
@@ -202,13 +207,14 @@ function addSubClick(element) {
 }
 
 function createGameWindow(gameType, gameProduct) {
-  if (gameType == "Slot") {
-    window.open(
-      "/Lobby/Game/" + gameProduct,
-      "popUpWindow",
-      "height=800,width=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes"
-    );
-  } else if (gameType == "Live") {
+  // Các sảnh game đang bảo trì
+  const maintenanceGameTypes = ["Slot", "Fish", "Board", "CockFighting", "Lottery"];
+  if (maintenanceGameTypes.includes(gameType)) {
+    toastr.info("Sảnh game đang bảo trì");
+    return;
+  }
+
+  if (gameType == "Live") {
     let product = null;
     let code = null;
 
@@ -218,7 +224,7 @@ function createGameWindow(gameType, gameProduct) {
         code = "LC";
         break;
       case "SA":
-        product = "SA";
+        product = "TEST";
         code = "LC";
         break;
       case "EG":
@@ -226,23 +232,27 @@ function createGameWindow(gameType, gameProduct) {
         code = "LC";
         break;
       case "TP":
+        product = "TEST";
+        code = "LC";
         break;
       case "BG":
+        product = "BG";
+        code = "LC";
         break;
       case "MG":
-        product = "MG";
+        product = "TEST";
         code = "LC";
         break;
       case "PP":
-        product = "PP";
+        product = "TEST";
         code = "LC";
         break;
       case "DB":
-        product = "DB";
+        product = "TEST";
         code = "LC";
         break;
       case "PT":
-        product = "PTU";
+        product = "TEST";
         code = "LC";
         break;
       case "DG":
@@ -254,11 +264,19 @@ function createGameWindow(gameType, gameProduct) {
         code = "LC";
         break;
       case "AG":
-        product = "AG";
+        product = "TEST";
         code = "LC";
         break;
-      case "GP":
-        product = "GP";
+      case "PA":
+        product = "TEST";
+        code = "LC";
+        break;
+      case "VIA":
+        product = "TEST";
+        code = "LC";
+        break;
+      case "IDN":
+        product = "TEST";
         code = "LC";
         break;
     }
@@ -269,16 +287,24 @@ function createGameWindow(gameType, gameProduct) {
     let code = null;
 
     switch (gameProduct) {
-      case "SB":
-        product = "SB";
+      case "SABA":
+        product = "TEST";
+        code = "SB";
+        break;
+      case "CR":
+        product = "TEST";
         code = "SB";
         break;
       case "CMD":
-        product = "CMD";
+        product = "TEST";
         code = "SB";
         break;
-      case "UG2":
-        product = "UG2";
+      case "UG":
+        product = "TEST";
+        code = "SB";
+        break;
+      case "IM":
+        product = "TEST";
         code = "SB";
         break;
       case "SBO":
@@ -318,7 +344,7 @@ function createGameWindow(gameType, gameProduct) {
       window.open(
         "/Redirect?url=" + utoa("/Lobby/Board/" + gameProduct),
         "popUpWindow",
-        "height=800,width=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes"
+        "height=800,width=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes",
       );
     } else {
       switch (gameProduct) {
@@ -422,6 +448,13 @@ function launchGame(gameProduct, gameCode) {
     return;
   }
 
+  // Kiểm tra sảnh game có hoạt động không
+  const activeProducts = ["SEX", "EG", "BG", "DG", "WM", "SBO"];
+  if (!activeProducts.includes(product)) {
+    toastr.info("Sảnh game đang bảo trì");
+    return;
+  }
+
   // Xay dung modal chuyen quy ngay tai day
   const modalHtml = `
     <div class="game-transfer-wallet-modal-v2 undefined open">
@@ -462,7 +495,7 @@ function launchGame(gameProduct, gameCode) {
     ".game-transfer-wallet-modal-v2__close",
     function () {
       $("#game-transfer-wallet-modal-container").empty();
-    }
+    },
   );
 
   // Call getWalletV2 with the gameID (which is the same as the product)
@@ -558,7 +591,7 @@ function startGame(product, type) {
         Authorization: `Bearer ${bearerToken}`,
         "Content-Type": "application/json",
       },
-    }
+    },
   )
     .then((response) => response.json())
     .then((result) => {
@@ -863,30 +896,30 @@ function showBackdropModal(status) {
 
 function initAuthModal(type, status, dump = false) {
   if (dump) {
-    $("._2fMGqDLeVdueHNrY6jh1tZ").hide();
-    $("._1M8UeeUNQsZy4H6GAA2ah3").hide();
+    $(".modal-login").hide();
+    $(".modal-register").hide();
   }
 
   if (type) {
     // login
     if (status) {
       showBackdropModal(true);
-      $("._2fMGqDLeVdueHNrY6jh1tZ").css("left", "-50%"); // Bắt đầu từ bên trái màn hình
-      $("._2fMGqDLeVdueHNrY6jh1tZ").show();
-      $("._2fMGqDLeVdueHNrY6jh1tZ").animate({ left: "0" }, 200, () => { }); // Di chuyển vào giữa màn hình
+      $(".modal-login").css("left", "-50%"); // Bắt đầu từ bên trái màn hình
+      $(".modal-login").show();
+      $(".modal-login").animate({ left: "0" }, 200, () => {}); // Di chuyển vào giữa màn hình
     } else {
-      $("._2fMGqDLeVdueHNrY6jh1tZ").fadeOut();
+      $(".modal-login").fadeOut();
       showBackdropModal(false);
     }
   } else {
     // register
     if (status) {
       showBackdropModal(true);
-      $("._1M8UeeUNQsZy4H6GAA2ah3").css("right", "-50%");
-      $("._1M8UeeUNQsZy4H6GAA2ah3").show();
-      $("._1M8UeeUNQsZy4H6GAA2ah3").animate({ right: "0" }, 200, () => { });
+      $(".modal-register").css("left", "-50%");
+      $(".modal-register").show();
+      $(".modal-register").animate({ left: "0" }, 200, () => {});
     } else {
-      $("._1M8UeeUNQsZy4H6GAA2ah3").fadeOut();
+      $(".modal-register").fadeOut();
       showBackdropModal(false);
     }
   }
@@ -909,7 +942,7 @@ function initAuthNotifyModal(status, title = "", message = "") {
       200,
       function () {
         $("._1M8UeeUNQsZy4H6GAA2notify").fadeOut();
-      }
+      },
     );
   }
 }
@@ -1044,7 +1077,7 @@ function registerPOST(element) {
           : $("#registerForm input#refcode").val(),
         email: $("#registerForm input#username").val() + "@gmail.com",
         phone: $("#registerForm input#phone").val(),
-        password: $("#registerForm input#password").val()
+        password: $("#registerForm input#password").val(),
       }),
     }).done(function (response) {
       if (response.status) {
@@ -1077,7 +1110,7 @@ function reloadBalance(element) {
           const meData = result.user;
           setTimeout(() => {
             $("p.header-balance").text(
-              numberWithCommas(meData.coin / 1000) + " K"
+              numberWithCommas(meData.coin / 1000) + " K",
             );
             $("span#reloadBalanceBtn").html(`<i class="fa fa-refresh"></i>`);
           }, 1000);

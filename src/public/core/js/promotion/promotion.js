@@ -19,7 +19,7 @@ const getPromotionData = () => {
         if (response.status) {
             response.data.forEach(promotion => {
                 $(".promo-container").append(`
-                    <div class="ng-scope promo-item" style="margin-left: 0px !important; padding: 10px; cursor: pointer; width: 50% !important; height: 240px !important" onclick="getPromotionInfo('${promotion.id}')">
+                    <div class="ng-scope promo-item" style="cursor: pointer; width: 100% !important; height: 100% !important;" onclick="getPromotionInfo('${promotion.id}')">
                         <img data-src="${promotion.thumbnail}" alt="${promotion.title}" src="${promotion.thumbnail}">
                     </div>
                 `);

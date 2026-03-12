@@ -19,13 +19,13 @@
             width: 222px;
             height: 72px;
             margin: 0;
-            color: #fff;
+            color: #000;
             font-size: 15px;
             font-weight: 500;
-            background: #262626;
+            background: #f6dad8;
             border-radius: 10px;
             box-sizing: border-box;
-            border: 3px solid #262626;
+            border: 3px solid #f6dad8;
             list-style: none;
             cursor: pointer;
         }
@@ -44,7 +44,7 @@
 
         .zopmijz8rytdZWDDDhpNu li:hover,
         .zopmijz8rytdZWDDDhpNu li.active {
-            border-color: #fe4d01;
+            border-color: #d4453d;
         }
 
         ._74QR1YC5jN2v1_8-p0t7B {
@@ -52,7 +52,7 @@
             color: #fff;
             font-size: 16px;
             font-weight: 500;
-            background: #262626;
+            background: #f6dad8;
             border-radius: 10px;
         }
 
@@ -70,7 +70,7 @@
         ._1XYnvVSc_zEv3kNu71jQwo li:hover,
         ._1XYnvVSc_zEv3kNu71jQwo li.active {
             color: #000;
-            background: #fe4d01;
+            background: #fff;
         }
 
         ._1XYnvVSc_zEv3kNu71jQwo li {
@@ -296,6 +296,7 @@
                                                             class="ng-scope">
                                                             <div class="form-group"> <label
                                                                     class="control-label ng-scope"
+                                                                    style="color: #000;"
                                                                     translate="Common_BankName">Ngân hàng</label>
                                                                 <select id="bankProvideUserAdd"
                                                                     ng-model="$ctrl.viewModel.bankAccountForm.bankName.value"
@@ -305,7 +306,7 @@
                                                             </div>
                                                             <div class="form-group ng-scope"
                                                                 ng-if="$ctrl.viewModel.bankAccountForm.city.visible">
-                                                                <label class="control-label ng-binding">Tên chủ tài
+                                                                <label class="control-label ng-binding" style="color: #000;">Tên chủ tài
                                                                     khoản</label>
                                                                 <input type="text" id="bankNameUserAdd"
                                                                     class="form-control ng-pristine ng-valid ng-empty ng-touched"
@@ -314,7 +315,7 @@
                                                             <div class="form-group"
                                                                 ng-class="{ 'has-error': $ctrl.viewModel.bankAccountForm.account.invalid }">
                                                                 <label class="control-label ng-scope"
-                                                                    translate="Common_BankAccount">Số tài khoản</label>
+                                                                    translate="Common_BankAccount" style="color: #000;">Số tài khoản</label>
                                                                 <input id="bankNumberUserAdd"
                                                                     ng-model="$ctrl.viewModel.bankAccountForm.account.value"
                                                                     class="form-control ng-pristine ng-valid ng-empty ng-touched"
@@ -329,7 +330,7 @@
                                                         <div class="form-group">
                                                             <button type="submit"
                                                                 class="btn btn-default btn-lg ng-scope"
-                                                                style="width: 100%; color: #ffffff; background-color: #fe4d01; border: none;">Gửi
+                                                                style="width: 100%; color: #000; background-color: #d4453d; border: none;">Gửi
                                                                 đi</button>
                                                         </div>
                                                     </form>
@@ -344,7 +345,7 @@
                                                     class="ng-scope">
                                                     <div class="form-group">
                                                         <label class="control-label ng-scope"
-                                                            translate="Common_BankName">Ngân hàng</label>
+                                                            translate="Common_BankName" style="color: #000;">Ngân hàng</label>
                                                         <select
                                                             class="form-control ng-pristine ng-valid ng-not-empty ng-touched"
                                                             id="bankProvide">
@@ -352,14 +353,14 @@
                                                     </div>
 
                                                     <div class="form-group ng-scope">
-                                                        <label class="control-label ng-binding">Chủ tài khoản</label>
+                                                        <label class="control-label ng-binding" style="color: #000;">Chủ tài khoản</label>
                                                         <input type="text"
                                                             class="form-control ng-pristine ng-valid ng-empty ng-touched"
                                                             placeholder="ví dụ : Nguyen Van A" id="bankName" disabled>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label ng-scope">Số tài khoản</label>
+                                                        <label class="control-label ng-scope" style="color: #000;">Số tài khoản</label>
                                                         <input
                                                             class="form-control ng-pristine ng-valid ng-empty ng-touched"
                                                             type="number" id="bankNumber"
@@ -367,14 +368,14 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label ng-scope">Số tiền rút</label>
+                                                        <label class="control-label ng-scope" style="color: #000;">Số tiền rút</label>
                                                         <input
                                                             class="form-control ng-pristine ng-valid ng-empty ng-touched"
                                                             type="text" id="amountWithdraw" value="0" oninput="">
                                                     </div>
 
                                                     <div class="form-group ng-scope">
-                                                        <label class="control-label ng-binding">Mật khẩu bảo mật</label>
+                                                        <label class="control-label ng-binding" style="color: #000;">Mật khẩu bảo mật</label>
                                                         <input type="password"
                                                             class="form-control ng-pristine ng-valid ng-empty ng-touched"
                                                             placeholder="mật khẩu bảo mật tài khoản..." id="passwd">
@@ -383,7 +384,7 @@
                                                 </section>
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-default btn-lg ng-scope"
-                                                        style="width: 100%; color: #ffffff; background-color: #fe4d01; border: none;">Thanh
+                                                        style="width: 100%; color: #ffffff; background-color: #D4453D; border: none;">Thanh
                                                         toán ngay bây giờ</button>
                                                 </div>
                                             </form>
@@ -399,7 +400,7 @@
     </div>
     <!-- Modal Lucky Money -->
     <div class="modalLucky">
-        <div class="modal-content-lucky" style="background: url(/images/frameSodo.png) no-repeat center top;">
+        <div class="modal-content-lucky" style="background: url(/images/frameSodo2.png) no-repeat center top;">
             <div class="item item-close">
                 <img class="luckymoney" src="/images/luckymoney.png" alt="">
                 <div class="item-header">

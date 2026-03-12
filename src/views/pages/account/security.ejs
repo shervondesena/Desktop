@@ -9,17 +9,17 @@
 
         ._1v_g9pbVFecDdUM3Df4Cdk li {
             display: inline-block;
-            width: 30%;
-            color: white;
+            width: 26%;
             vertical-align: top;
-            background: rgb(254 77 1);
+            margin: 10px 3%;
+            background: hsla(0, 0%, 80%, .6);
             border-radius: 5px;
             cursor: pointer;
-            margin: 0 1rem;
         }
 
         ._1v_g9pbVFecDdUM3Df4Cdk li button {
             width: 100%;
+            min-height: 150px;
             padding: 25px 0 15px;
             color: #444;
             font-size: 16px;
@@ -27,7 +27,12 @@
             text-decoration: none;
             letter-spacing: 2px;
             cursor: pointer;
-            color: white;
+        }
+
+        ._1v_g9pbVFecDdUM3Df4Cdk li i {
+            display: block !important;
+            font-size: 50px !important;
+            margin-bottom: 10px !important;
         }
 
         .btn-link,
@@ -143,7 +148,7 @@
                                             id="security-changepwd-body">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading"
-                                                    style="background: #fe4d01;color: white;text-align: center;text-transform: uppercase;">
+                                                    style="background: #d4453d;color: white;text-align: center;text-transform: uppercase;">
                                                     <span translate="Account_ModifyPassword" class="ng-scope"
                                                         style="font-size: 18px;">Thay đổi
                                                         mật khẩu đăng nhập</span>
@@ -218,14 +223,16 @@
                                         <gupw-change-password class="ng-scope ng-isolate-scope" style="display: none;"
                                             id="account-security-changepwd-body">
                                             <div class="panel panel-default">
-                                                <div class="panel-heading" style="background: #fe4d01;color: white;text-align: center;text-transform: uppercase;"> 
-                                                    <span translate="Account_ModifyPassword"  style="font-size: 18px;"
-                                                        class="ng-scope">Thay đổi mật khẩu bảo mật</span> </div>
+                                                <div class="panel-heading"
+                                                    style="background: #d4453d;color: white;text-align: center;text-transform: uppercase;">
+                                                    <span translate="Account_ModifyPassword" style="font-size: 18px;"
+                                                        class="ng-scope">Thay đổi mật khẩu bảo mật</span>
+                                                </div>
                                                 <div class="panel-body">
                                                     <form class="form-horizontal ng-pristine ng-valid"
                                                         id="form-changepwd-account">
 
-                                                        <div class="form-group form-password-1"  id="currentPasswdSec">
+                                                        <div class="form-group form-password-1" id="currentPasswdSec">
                                                             <label class="col-sm-4 control-label ng-scope">Mật khẩu ban
                                                                 đầu</label>
                                                             <div class="col-sm-8">

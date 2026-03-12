@@ -1,25 +1,27 @@
 <html>
 
 <!-- Smartsupp Live Chat script -->
+<!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '90e797fd2a66dc4a9153e2884be865033dac039d';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
+  var _smartsupp = _smartsupp || {};
+  _smartsupp.key = 'a9f46028ddcfa85a0072b4404f6496a0114baead';
+  window.smartsupp || (function (d) {
+    var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
+    s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
+    c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
+    c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
+  })(document);
 </script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+
 
 <!-- Dung cho viec nguoi dung vao trang auth/register thi phai hide di reg modal -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const currentPath = window.location.pathname;
     if (currentPath === '/auth/register') {
-      // Xóa các phần tử có class _1M8UeeUNQsZy4H6GAA2ah3
-      const elementsToRemoveByClass = document.querySelectorAll('._1M8UeeUNQsZy4H6GAA2ah3');
+      // Xóa các phần tử có class modal-register
+      const elementsToRemoveByClass = document.querySelectorAll('.modal-register');
       elementsToRemoveByClass.forEach(element => {
         element.remove();
       });
@@ -84,29 +86,78 @@ window.smartsupp||(function(d) {
 
     /* HEADER */
     header {
-      position: fixed;
+      position: relative;
       width: 100%;
       z-index: 10;
       background: #000;
-      transition: all 0.2s linear;
-    }
-
-    header.scrolled {
-      box-shadow: 1px 6px 13px 3px #080808;
     }
 
     header .header-top {
-      background: url(../header/header-top.png) repeat-x;
-      height: 51px;
+      position: relative;
+      overflow: visible;
+      background: #000;
+      height: 100px;
     }
 
     header .header-top>div {
       max-width: 1300px;
-      padding: 5px 15px 5px;
+      padding: 5px 15px;
       display: flex;
       margin: auto;
       justify-content: space-between;
-      height: 50px;
+      align-items: center;
+      height: 55px;
+      position: relative;
+      z-index: 10;
+    }
+
+    header .header-top video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header .header-top .header-top-links {
+      max-width: 1300px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 25px;
+      height: 38px;
+      padding: 0 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header .header-top .header-top-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    header .header-top .header-top-links a:hover {
+      color: #ff2600;
+    }
+
+    header .header-top .header-top-links a i {
+      font-size: 16px;
+      color: #555;
+    }
+
+    header .header-top .header-top-links a:hover i {
+      color: #ff2600;
     }
 
     header .header-top .header-top-left {
@@ -116,57 +167,206 @@ window.smartsupp||(function(d) {
     header .header-top .header-top-right {
       display: flex;
       align-items: center;
-      gap: 3rem;
+      gap: 20px;
     }
 
-    header .header-top .header-top-left a {
-      text-decoration: none;
-      padding: 10px 20px;
-      border: none;
-      background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
-      border-radius: 27px;
-      line-height: 21px;
-      color: #fff;
-      font-size: 20px;
+    /* Logged-in user info items */
+    .header-user-info {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 15px;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    .header-user-label {
+      font-weight: 500;
+      color: #555;
+    }
+
+    .header-user-info ._3lymj_9N-oJ2lPh20o6tzf,
+    .header-user-info .balance {
       font-weight: 700;
-      letter-spacing: 1px;
-      margin-right: 1rem;
+      color: #333;
     }
 
-    header .header-top .header-top-left a:nth-child(2) {
-      background: linear-gradient(to top, #b15a16, #f8d78a, #f8eab3);
-      margin-right: 0;
-      color: #000;
+    /* NẠP TIỀN / RÚT TIỀN buttons (logged in) */
+    .header-btn-deposit,
+    .header-btn-withdraw {
+      min-width: 130px;
+      height: 37px;
+      line-height: 37px;
+      padding: 0 5px;
+      margin-right: 10px;
+      color: #fff;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 5px;
+      background: #d4463d;
+      cursor: pointer;
+    }
+
+    .header-btn-deposit:hover,
+    .header-btn-withdraw:hover {
+      opacity: 0.9;
+    }
+
+    .header-btn-deposit a,
+    .header-btn-withdraw a {
+      text-decoration: none !important;
+      color: white;
+      font-weight: 500;
+    }
+
+    /* Down arrow button */
+    .header-arrow-btn {
+      background: #444 !important;
+      border: none !important;
+      color: #fff !important;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0 !important;
+    }
+
+    .header-arrow-btn:hover {
+      background: #333 !important;
+    }
+
+    .header-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Dropdown menu */
+    .header-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 214px;
+      background: #d4463c;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .header-dropdown-menu.open {
+      display: block;
+    }
+
+    .header-dropdown-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    .header-dropdown-menu ul li {
+      padding: 0;
+    }
+
+    .header-dropdown-menu ul li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: background 0.15s;
+    }
+
+    .header-dropdown-menu ul li a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .header-dropdown-menu ul li a i {
+      width: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .header-dropdown-logout {
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0;
+    }
+
+    .header-dropdown-logout a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .header-dropdown-logout a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .header-dropdown-logout a i {
+      width: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* Arrow rotates when open */
+    .header-arrow-btn.open i {
+      transform: rotate(180deg);
+    }
+
+    .header-arrow-btn i {
+      transition: transform 0.25s ease;
     }
 
     header .header-top .login {
-      background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
-      color: white;
-      border-radius: 20px;
-      font-weight: 900;
-      padding: 8px 20px;
-      outline: none;
-      border: none;
-      font-size: 20px;
+      margin: 0 25px;
+      color: #ff2600;
+      background: rgba(0, 0, 0, 0);
+      width: 135px;
+      height: 35px;
+      border-radius: 6px;
+      border: 1px solid #ff2600;
       cursor: pointer;
-      margin-right: 0.5rem;
     }
 
     header .header-top .register {
-      background: linear-gradient(to top, #959191, #d9d5d5, #ffffff);
-      color: black;
-      border-radius: 20px;
-      padding: 8px 20px;
-      outline: none;
-      border: none;
-      font-size: 20px;
+      position: relative;
+      color: #fff;
+      background: #ff2600;
+      width: 135px;
+      height: 35px;
+      border-radius: 6px;
+      border: 1px solid #ff2600;
       cursor: pointer;
-      font-weight: 900;
+    }
+
+    header .header-top .playtest {
+      margin: 0 25px;
+      color: #ff2600;
+      background: rgba(0, 0, 0, 0);
+      width: 135px;
+      height: 35px;
+      border-radius: 6px;
+      border: 1px solid #ff2600;
     }
 
     header .header-bottom {
-      background: url(../header/header-bottom.png) repeat-x;
-      height: 80px;
+      background: white;
+      height: 50px;
+      border-bottom: 1px solid #eee;
     }
 
     /* Header-Bottom */
@@ -174,7 +374,7 @@ window.smartsupp||(function(d) {
       max-width: 1300px;
       position: relative;
       margin: auto;
-      height: 80px;
+      height: 50px;
     }
 
     header .header-bottom>div ul {
@@ -182,72 +382,88 @@ window.smartsupp||(function(d) {
       padding: 0;
       margin: 0;
       list-style-type: none;
-      height: 80px;
+      height: 50px;
       align-items: center;
-      line-height: 65px;
+      justify-content: center;
+      gap: 0;
     }
 
     header .header-bottom>div nav {
-      height: 80px;
+      height: 50px;
       width: 100%;
     }
 
-    header .header-bottom>div li {
-      display: inline;
-      vertical-align: top;
-      width: 15%;
+    header .header-bottom>div>nav>ul>li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      padding: 0 18px;
+      position: static;
     }
 
-    header .header-bottom>div li a {
-      font-size: 25px;
-      color: #fff;
-      font-weight: 600;
+    header .header-bottom>div>nav>ul>li>a {
+      font-size: 15px;
+      color: #000;
+      font-weight: 700;
       text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    header .header-bottom>div>nav>ul>li:hover {
+      background: red;
+    }
+
+    header .header-bottom>div>nav>ul>li:hover>a {
+      color: #fff;
     }
 
     header .logomain {
       position: absolute;
-      top: -50px;
-      right: 50%;
-      transform: translateX(50%);
+      top: 15px;
+      left: 15px;
+      transform: none;
       transition: all 0.2s linear;
+      z-index: 5;
     }
 
     header .logomain img {
       width: 200px;
+      height: auto;
       transition: all 0.2s linear;
     }
 
-    header.scrolled .logomain img {
-      filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
-    }
+
 
     /* HEADER ITEM GAME */
     header nav {
-      position: absolute;
+      position: relative;
     }
 
     header ._4GFFQME3VxQOLaxRzBxeQ>ul>li {
-      height: 70px;
-      margin: 0 10px;
-      padding: 0 10px;
-      color: #a2aabd;
-      font-size: 16px;
+      height: 50px;
+      margin: 0;
+      padding: 0 18px;
+      color: #000;
+      font-size: 15px;
       cursor: pointer;
     }
 
     header ._2xvnAce2IF0yzYHRGAlbG8 {
       position: absolute;
-      z-index: 30;
-      padding: 5px;
-      color: #171717;
+      z-index: 3;
+      padding: 20px;
+      color: #333;
       border-radius: 15px;
-      visibility: hidden;
       white-space: nowrap;
-      left: 0;
-      width: 100%;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-      background: #000000c4;
+      top: 100%;
+      left: 0px;
+      right: 0;
+      background: linear-gradient(180deg, rgba(138, 138, 138, 0.7411764706), rgba(0, 0, 0, 0.7411764706));
+      display: inline-block;
+      visibility: hidden
     }
 
     header ._4GFFQME3VxQOLaxRzBxeQ>ul>li:hover ._2xvnAce2IF0yzYHRGAlbG8 {
@@ -255,78 +471,69 @@ window.smartsupp||(function(d) {
     }
 
     header ._2xvnAce2IF0yzYHRGAlbG8 ol {
-      justify-content: flex-start;
+      justify-content: center;
       list-style: none;
       margin: 0 auto;
       display: flex;
-      padding: 10px 0 0;
+      padding: 0;
       flex-wrap: wrap;
-      width: 1200px;
+      gap: 10px;
     }
 
     header ._2xvnAce2IF0yzYHRGAlbG8 ol li {
-      width: 25%;
-      padding: 0 10px;
-      color: #000;
-      font-size: 13px;
-      line-height: 30px;
-      text-align: left;
-    }
-
-    header ._2xvnAce2IF0yzYHRGAlbG8 ol li#slotGame {
-      width: 14%;
-      padding: 10px;
-      color: #000;
-      font-size: 13px;
-      line-height: 30px;
-      text-align: left;
+      width: 160px;
+      height: 76px;
+      background: url("/images/border-item.png") no-repeat center / contain;
     }
 
     header ._2xvnAce2IF0yzYHRGAlbG8 ol li a {
-      display: block;
-      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
       color: inherit;
       text-decoration: none;
       cursor: pointer;
+      padding: 10px;
     }
 
     header ._2xvnAce2IF0yzYHRGAlbG8 ol li img {
-      width: 100%;
-      height: 100%;
+      max-width: 100%;
+      max-height: 60px;
+      object-fit: contain;
     }
 
     /* LOGIN MODAL */
 
-    .modal-login {
+    .modal-login,
+    .modal-register {
       z-index: 1050;
       display: none;
       position: fixed;
       top: 0 !important;
       left: 0;
-      overflow: hidden;
       outline: 0;
       background: linear-gradient(to top, black, rgba(0, 0, 0, 0.25));
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
     }
 
-
     ._2fMGqDLeVdueHNrY6jh1tZ .modal-dialog {
-      margin-top: 100px;
-      border: none;
-      top: 10%;
-      left: 0;
+      width: 1075px;
+      height: 725px;
+      padding: 15px;
+      margin-top: 50px;
+      background: url("/images/Form/modal-border.png") no-repeat center / contain;
+      border-radius: 48px;
     }
 
     ._2fMGqDLeVdueHNrY6jh1tZ .modal-content {
-      width: 540px;
-      min-height: 400px;
+      background: none;
+      border: none;
       box-shadow: none;
-      border-radius: 20px;
       position: relative;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid rgba(0, 0, 0, 0.2);
       outline: 0;
-      box-shadow: 4px 4px 4px 0px #0000002b;
+      border-radius: 6px;
     }
 
     ._38xNbPhu8VneFOc5oh78Hr {
@@ -350,58 +557,132 @@ window.smartsupp||(function(d) {
       }
     }
 
-    .logo-login {
-      background: url(../images/logongang.png);
-      background-position: center;
-      height: 110px;
-      background-size: contain;
-      background-repeat: no-repeat;
+    ._3N2lRww2b9eZP-F5fSS-Rq {
+      display: flex;
+      position: relative;
+      gap: 20px;
+      padding: 40px;
+      height: 695px;
+      color: #000;
     }
 
     ._3N2lRww2b9eZP-F5fSS-Rq section>form {
-      position: relative;
-      width: 350px;
-      margin: 0 auto;
-      text-align: center;
-      margin-top: 1rem;
+      display: block;
+      padding: 18px 30px;
+      width: 461px;
+      height: 424px;
+      background: rgba(169, 169, 169, .4);
+      border-radius: 30px;
     }
 
     ._3N2lRww2b9eZP-F5fSS-Rq section>form input {
       width: 100%;
       outline: none;
-      height: 40px;
-      padding: 0 10px;
-      font-size: 17px;
+      height: 50px;
+      padding: 0 15px;
+      font-size: 16px;
       background: #fff;
       border: none;
-      border-bottom: 1px solid #001c42;
-      border-radius: 0px;
+      border-radius: 0;
     }
 
     ._3kf2U2RqwnANN5VYWFRt8X {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0;
+      background: #fff;
+      border-radius: 30px;
+      padding: 0 20px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    ._3kf2U2RqwnANN5VYWFRt8X i {
+      color: #e23035 !important;
+      font-size: 20px !important;
+      min-width: 24px;
+    }
+
+    ._3kf2U2RqwnANN5VYWFRt8X input {
+      border: none !important;
+      border-bottom: none !important;
+      height: 50px !important;
+      border-radius: 0 !important;
+      padding: 0 10px !important;
+    }
+
+    ._3kf2U2RqwnANN5VYWFRt8X .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #999;
+      font-size: 18px;
+      padding: 5px;
     }
 
     ._1elJEDoklSJeZCRhRorPTp {
-      width: 200px;
+      display: block;
+      width: 100%;
       height: 40px;
-      margin-top: 2rem;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
+      line-height: 20px;
+      margin: 21px auto 0 auto;
       color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 49px;
       border: none;
-      border-radius: 5px;
-      background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
+      background: #e23035;
+      cursor: pointer;
     }
 
-    ._3bcYJCzylw0eAO3uq2kJMq {
+    ._3bcYJCzylw0eAO3uq2kJMq,
+    ._3eN8dYJXCF83-Dh1qe5MAc {
       margin: 30px 0;
       color: #001c42;
       text-align: center;
       font-size: 15px;
+    }
+
+    .maagwmS6qLuFIDCpWszAE {
+      text-align: center;
+    }
+
+    ._1BBGAyzpmRR6hBc3fgW5CV {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+      margin: 20px auto;
+    }
+
+    ._1BBGAyzpmRR6hBc3fgW5CV p {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    ._1BBGAyzpmRR6hBc3fgW5CV span {
+      font-size: 16.6px;
+      text-align: center;
+    }
+
+    ._1BBGAyzpmRR6hBc3fgW5CV ._1OoWQtNHBngCIoug1-MRj3 {
+      width: 126px;
+      height: 48px;
+    }
+
+    ._3QB8ae9h2XSxXsg5z5KsDO {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: normal;
+      margin-bottom: 17px;
+      text-align: center;
     }
 
     /* CAPTCHA LOGIN */
@@ -453,6 +734,17 @@ window.smartsupp||(function(d) {
     }
 
     /* REGISTER MODAL */
+    .modal-register._2fMGqDLeVdueHNrY6jh1tZ .modal-dialog {
+      height: auto;
+      min-height: 725px;
+      background-size: 100% 100%;
+    }
+
+    .modal-register ._3N2lRww2b9eZP-F5fSS-Rq section>form {
+      height: auto !important;
+      width: 461px;
+    }
+
     .modal {
       position: fixed;
       right: 0;
@@ -460,6 +752,12 @@ window.smartsupp||(function(d) {
       left: 0;
       overflow: hidden;
       outline: 0;
+    }
+
+    .modal-register ._1_zP-Q6VoUbliQZKPc8BOz {
+      margin-top: 113px;
+      width: 485px;
+      height: 583px;
     }
 
     ._1M8UeeUNQsZy4H6GAA2ah3 {
@@ -536,189 +834,29 @@ window.smartsupp||(function(d) {
       margin-bottom: 1rem;
     }
 
-    /* MAIN */
 
-    .main {
-      background: url(../images/bgmain.jpg);
-      width: 100%;
-      height: 85%;
-    }
-
-    .main img {
-      width: 100%;
-    }
-
-    .main .main__logo {
-      position: absolute;
-      top: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 420px;
-      z-index: 5;
-    }
-
-    .main__content__left,
-    .main__content__right {
-      position: absolute;
-    }
-
-    .main__content__left {
-      top: 25%;
-      width: 65%;
-      left: 2%;
-    }
-
-    .main__content__right {
-      display: flex;
-      width: 37%;
-      flex-wrap: wrap;
-      right: 0;
-      top: 38%;
-    }
-
-    .main__content__right img {
-      width: 50%;
-      padding: 10px;
-    }
-
-    .container {
-      max-width: 1500px;
-      margin: auto;
-    }
-
-    /* KM HOT */
-    .main-promotions {
-      padding-top: 3rem;
-      background: url(../images/bgmain.jpg);
-      position: relative;
-      width: 100%;
-      height: fit-content;
-    }
-
-    .head-red-container {
-      padding: 2rem 0;
-    }
-
-    .head-red-container h2 {
-      font-size: 35px;
-      width: 50%;
-      color: #fff;
-      position: relative;
-      padding: 5px 0 5px 20px;
-      background: linear-gradient(to right, #ffffff36, transparent);
-    }
-
-    .head-red-container h2::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: -8px;
-      bottom: 0;
-      width: 8px;
-      height: 70px;
-      background-color: red;
-    }
-
-    .main-promotions-content {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .main-promotions-content img {
-      width: 50%;
-      padding: 20px;
-      cursor: pointer;
-    }
-
-    /* GAME HOT */
-
-    .main-games-content {
-      padding: 0 58px;
-    }
-
-    .main-games-content .top {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .main-games-content .bot {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .main-games-content img {
-      width: 25%;
-      cursor: pointer;
-    }
-
-    /* THONG TIN */
-    .infor-main {
-      background-color: #000;
-      width: 100%;
-      padding: 2rem 0;
-    }
-
-    .infor-main h3 {
-      text-align: center;
-      color: white;
-      font-size: 23px;
-      margin-bottom: 2rem;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: auto auto auto auto;
-      grid-gap: 20px;
-      text-align: center;
-    }
-
-    .grid-container .grid-item a {
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .thongtin-diachi {
-      background-color: #000;
-      color: #c7c4c4;
-    }
-
-    .thongtin-diachi__content {
-      display: flex;
-      padding: 2rem 0;
-    }
-
-    .thongtin-diachi__content>div p {
-      margin-bottom: 1rem;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 1rem 0;
-      text-align: center;
-      background: #333333;
-    }
-
-    footer img {
-      max-width: 1500px;
-    }
 
     /* PROMOTIOS PAGE */
 
     ._3APJCJr18cNksZ53-4jnrw {
-      padding-top: 130px;
-      background: url(/images/bgmain.jpg);
+      padding-top: 0;
       height: 100%;
     }
 
     ._1UEhiSbeYEgYWSJeUHqKc7 {
-      max-width: 1300px;
-      margin: auto;
-      display: flex;
-      flex-wrap: wrap;
-      height: 100%;
-      padding-top: 3rem;
-      align-content: center;
+      display: grid;
+      justify-items: center;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    ._1UEhiSbeYEgYWSJeUHqKc7 img {
+      width: 100%;
+    }
+
+    ._2Q5_8e9t7nS0te23FQXjLw {
+      background-color: #00000052;
     }
 
     ._2Q5_8e9t7nS0te23FQXjLw .modal-dialog {
@@ -726,6 +864,7 @@ window.smartsupp||(function(d) {
       width: 1200px;
       padding: 20px;
       background-color: #fff;
+      border: 2px solid black;
     }
 
     ._2Q5_8e9t7nS0te23FQXjLw .modal-dialog .modal-content {
@@ -871,7 +1010,7 @@ window.smartsupp||(function(d) {
       width: 100%;
       height: 40px;
       padding: 0 10px 0 10px;
-      background-color: #f19949;
+      background-color: #d4453d;
       color: #fff;
       text-transform: uppercase;
     }
@@ -975,11 +1114,13 @@ window.smartsupp||(function(d) {
 
     .game-transfer-wallet-modal-v2__title button {
       border: none;
-      padding: 12px;
-      background: #f00;
-      color: #fff;
+      width: 50px;
+      height: 42px;
+      background: #080808;
+      color: #faff00;
       margin-right: -1rem;
       cursor: pointer;
+      border-radius: 9px;
     }
   </style>
 
@@ -987,13 +1128,13 @@ window.smartsupp||(function(d) {
   <style>
     .BDw45cKhOY5X-HJyc5_2C {
       position: relative;
-      background-color: #111212;
-      padding-top: 130px;
+      background-color: #fff;
+      padding-top: 0;
     }
 
     .BDw45cKhOY5X-HJyc5_2C ._1h0fCbtWimc44r9dNSenvs {
       position: relative;
-      max-width: 1300px;
+      max-width: 1200px;
       margin: 0 auto
     }
 
@@ -1007,7 +1148,7 @@ window.smartsupp||(function(d) {
 
     ._2Qr8R07mMXKa3GCsGT1Jx0 {
       height: fit-content;
-      background: #111212 url(/images/bgmain.jpg) no-repeat center top;
+      background: #fff;
     }
 
     .gSkJpAc7IrbXlj3biLk1e {
@@ -1034,7 +1175,7 @@ window.smartsupp||(function(d) {
       height: 218px;
       margin-bottom: 2px;
       color: #fff;
-      background: #444;
+      background: #d4453d;
       border-radius: 10px 10px 0 0;
     }
 
@@ -1104,19 +1245,19 @@ window.smartsupp||(function(d) {
 
     .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li:hover,
     .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li.active {
-      background: #fe4d01;
+      background: #d4453d;
     }
 
     .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li:hover a,
     .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li.active a {
-      color: #000;
+      color: #fff;
     }
 
     .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li {
       flex: 1;
       height: 100px;
       list-style: none;
-      background-color: #262626;
+      background-color: #f6dad8;
     }
 
     .NMMFlKUD4h5ITLiRUaVhE ul._3XHO2UA0RB0rER4aWKSeqO li a {
@@ -1127,7 +1268,7 @@ window.smartsupp||(function(d) {
       height: 100%;
       font-size: 18px;
       font-weight: 500;
-      color: #fff;
+      color: #000;
       text-decoration: none;
     }
 
@@ -1135,7 +1276,7 @@ window.smartsupp||(function(d) {
       display: block;
       margin: 0 auto;
       padding: 0 0 25px 0;
-      background: #262626;
+      background: #f6dad8;
       border-radius: 0 0 10px 10px;
       list-style: none;
     }
@@ -1147,6 +1288,7 @@ window.smartsupp||(function(d) {
       font-weight: 500;
       letter-spacing: 3px;
       line-height: 56px;
+      color: #000;
     }
 
     .NMMFlKUD4h5ITLiRUaVhE ul._1zBBtO83fFSEPTlrAwj7Vm>li a {
@@ -1165,8 +1307,8 @@ window.smartsupp||(function(d) {
 
     ul._1zBBtO83fFSEPTlrAwj7Vm>li.active,
     ul._1zBBtO83fFSEPTlrAwj7Vm>li:hover {
-      color: #000;
-      background: #fe4d01;
+      color: #fff;
+      background: #d4453d;
     }
 
     ._5kpYNqHFkQun8HWfr-YDg ._1OOV-q3ssZv9VpaFEYYwdD {
@@ -1203,20 +1345,20 @@ window.smartsupp||(function(d) {
       width: calc(100% / 3 - 8px);
       height: 72px;
       margin: 3px 12px 3px 0;
-      color: #fff;
+      color: #000;
       font-size: 14px;
       font-weight: 500;
-      background: #262626;
+      background: #f6dad8;
       border-radius: 10px;
       box-sizing: border-box;
-      border: 3px solid #262626;
+      border: 3px solid #f6dad8;
       list-style: none;
       cursor: pointer;
     }
 
     ._1YrLHVe0eksXwask_nimCh li:hover,
     ._1YrLHVe0eksXwask_nimCh li.active {
-      border-color: #fe4d01;
+      border-color: #d4453d;
     }
 
     .panel-default {
@@ -1225,18 +1367,22 @@ window.smartsupp||(function(d) {
 
     .panel {
       margin-bottom: 20px;
-      background-color: #fff;
+      background-color: #f6dad8;
       border: 1px solid transparent;
       border-radius: 4px;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     }
 
     .panel ._9MW-vSzsgcK9FRDyDzgUm {
-      background: #fe4d01;
+      background: #d4453d;
       color: #fff;
       position: relative;
       height: 51px;
       font-size: 21px;
+    }
+
+    ._3CMDGIALq8HDo4XBIBIB0c .panel-body {
+      background-color: #f6dad8;
     }
 
     .panel-default>.panel-heading {
@@ -1311,7 +1457,7 @@ window.smartsupp||(function(d) {
     }
 
     ._1OOV-q3ssZv9VpaFEYYwdD .panel ._1E-h2m4hlXgPeBtlUrqagO {
-      background: #fe4d01;
+      background: #d4453d;
       color: #fff;
       position: relative;
       height: 51px;
@@ -1428,25 +1574,36 @@ window.smartsupp||(function(d) {
             ng-class="$ctrl.styles.close" class="btn btn-link _38xNbPhu8VneFOc5oh78Hr" ng-click="$ctrl.dismiss()"><i
               class="fa-solid fa-xmark"></i></button>
           <div ng-class="$ctrl.styles['login-box']" class="_3N2lRww2b9eZP-F5fSS-Rq">
-            <section>
-              <div ng-class="$ctrl.styles.logo" class="logo-login">
-                <a href="/"></a>
+            <img src="/images/Form/ronaldinho-form.png" alt="" ng-class="$ctrl.styles['left-man']"
+              class="_1_zP-Q6VoUbliQZKPc8BOz">
+            <section style="width: 100%">
+              <div>
+                <figure ng-class="$ctrl.styles.logo" class="maagwmS6qLuFIDCpWszAE"> <img
+                    src="/images/Form/mb66-form.png" alt=""> </figure>
+                <div ng-class="$ctrl.styles.sponsor" class="_1BBGAyzpmRR6hBc3fgW5CV">
+                  <div>
+                    <p>Đại Sứ Thương Hiệu</p> <span>Ronaldinho (2025 - 2026)</span>
+                  </div> <img src="/images/Form/chuky-form.png" alt="" ng-class="$ctrl.styles.right"
+                    class="_1OoWQtNHBngCIoug1-MRj3">
+                </div>
               </div>
               <form novalidate="" ng-submit="$ctrl.login()"
                 class="ng-invalid ng-invalid-required ng-dirty ng-valid-parse" id="loginForm">
                 <div ng-class="$ctrl.styles['input-wrapper']" class="_3kf2U2RqwnANN5VYWFRt8X">
-                  <i style="font-size: 18px;" class="fa-solid fa-user"></i>
-                  <input type="text" placeholder="Tài Khoản" ng-model="$ctrl.user.account.value"
+                  <i class="fa-regular fa-user" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="text" placeholder="Tên đăng nhập" ng-model="$ctrl.user.account.value"
                     class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" id="username">
                 </div>
                 <div ng-class="$ctrl.styles['input-wrapper']" class="_3kf2U2RqwnANN5VYWFRt8X">
-                  <i style="font-size: 18px;" class="fa-solid fa-key"></i>
-                  <input type="password" placeholder="Mật Khẩu" ng-model="$ctrl.user.password.value"
+                  <i class="fa-solid fa-lock" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="password" placeholder="Mật khẩu" ng-model="$ctrl.user.password.value"
                     class="ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" id="password">
+                  <button type="button" class="toggle-password"
+                    onclick="var p=document.getElementById('password');var i=this.querySelector('i');if(p.type==='password'){p.type='text';i.classList.remove('fa-eye-slash');i.classList.add('fa-eye');}else{p.type='password';i.classList.remove('fa-eye');i.classList.add('fa-eye-slash');}"><i
+                      class="fa-solid fa-eye-slash"></i></button>
                 </div>
-                <br>
-                <div class="captcha">
-                  <i class="fa-solid fa-robot"></i>
+                <div class="captcha _3kf2U2RqwnANN5VYWFRt8X">
+                  <i class="fa-solid fa-shield"></i>
                   <div class="captcha-form" style="width: 50%;">
                     <input type="text" id="captcha-form" placeholder="Nhập Captcha">
                     <button type="button" class="captcha-refresh">
@@ -1462,14 +1619,20 @@ window.smartsupp||(function(d) {
                     class="ng-scope _3kf2U2RqwnANN5VYWFRt8Xl">ĐĂNG
                     NHẬP</span>
                 </button>
+                <p ng-class="$ctrl.styles.txt" class="_3bcYJCzylw0eAO3uq2kJMq">
+                  <span translate="Shared_New_Player" class="ng-scope">Bạn chưa có tài khoản?</span>
+                  <span>
+                    Nhấp Vào <span style="color: blue; cursor: pointer;" ng-click="$ctrl.openRegisterModal()"> Đây
+                    </span>
+                    để đăng ký ngay!
+                  </span>
+                </p>
+                <p class="_3QB8ae9h2XSxXsg5z5KsDO">
+                  Vui lòng tự bảo quản thông tin tài khoản <br>
+                  Để bảo đảm an toàn cho tài khoản của bạn
+                </p>
               </form>
-              <p ng-class="$ctrl.styles.txt" class="_3bcYJCzylw0eAO3uq2kJMq">
-                <span translate="Shared_New_Player" class="ng-scope">Bạn chưa có tài khoản?</span>
-                <span>
-                  Nhấp Vào <span style="color: blue; cursor: pointer;" ng-click="$ctrl.openRegisterModal()"> Đây </span>
-                  để đăng ký ngay!
-                </span>
-              </p>
+
             </section>
           </div>
         </gupw-login-box>
@@ -1478,140 +1641,88 @@ window.smartsupp||(function(d) {
   </div>
 
   <!-- Modal Register -->
-  <div uib-modal-window="modal-window" class="modal _1M8UeeUNQsZy4H6GAA2ah3" role="dialog" index="0"
-    style="z-index: 1050; top: -5px !important; display: none;">
-    <div class="modal-dialog" style="padding: 0 28px">
-      <div class="modal-content" uib-modal-transclude="" style="overflow-y: auto; max-height: 110vh">
+  <div uib-modal-window="modal-window" class="modal _2fMGqDLeVdueHNrY6jh1tZ modal-register" role="dialog" index="0"
+    style="z-index: 1050; display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content" uib-modal-transclude="">
         <gupw-register resolve="$resolve" modal-instance="$uibModalInstance" close="$close($value)"
           dismiss="$dismiss($value)" class="ng-scope ng-isolate-scope">
-          <button
-            style="width: 35px; border-radius: 50%;background: #fff;font-weight: 900;font-size: 20px;position: absolute;top: 10px;right: 10px;border: none;padding: 7px;color: #b50909;cursor: pointer;"
-            ng-class="$ctrl.styles.close" class="btn btn-link _2ZxfNIqB8ZGUvf62lMlRii" ng-click="$ctrl.dismiss()"><i
+          <button style="border-radius: 50%;background: #b50909;font-weight: 900;font-size: 20px;"
+            ng-class="$ctrl.styles.close" class="btn btn-link _38xNbPhu8VneFOc5oh78Hr" ng-click="$ctrl.dismiss()"><i
               class="fa-solid fa-xmark"></i></button>
-          <article ng-class="$ctrl.styles.article" class="_3Ep7x5F8gsaERZQuGfyGNo">
-            <div ng-class="$ctrl.styles.title" class="_1_Ib3et6YkodyIb6NDva3w">
-              <p translate="Register_Account_Registration" class="ng-scope">Đăng ký tài khoản</p>
-            </div>
-            <div ng-class="$ctrl.styles.content" class="_3jqXktvTialDzXUMLf4RzN">
-              <gupw-register-info class="ng-isolate-scope">
-                <div ng-if="!$ctrl.pending" ng-class="$ctrl.styles.wrapper" class="ng-scope">
-                  <div ng-if="!$ctrl.enable" class="ng-scope">
-                  </div>
+          <div ng-class="$ctrl.styles['login-box']" class="_3N2lRww2b9eZP-F5fSS-Rq"
+            style="height: auto; min-height: 695px;">
+            <img src="/images/Form/ronaldinho-form.png" alt="" ng-class="$ctrl.styles['left-man']"
+              class="_1_zP-Q6VoUbliQZKPc8BOz">
+            <section style="width: 100%">
+              <div>
+                <figure ng-class="$ctrl.styles.logo" class="maagwmS6qLuFIDCpWszAE"> <img
+                    src="/images/Form/mb66-form.png" alt=""> </figure>
+                <div ng-class="$ctrl.styles.sponsor" class="_1BBGAyzpmRR6hBc3fgW5CV">
+                  <div>
+                    <p>Đại Sứ Thương Hiệu</p> <span>Ronaldinho (2025 - 2026)</span>
+                  </div> <img src="/images/Form/chuky-form.png" alt="" ng-class="$ctrl.styles.right"
+                    class="_1OoWQtNHBngCIoug1-MRj3">
                 </div>
-              </gupw-register-info>
-              <gupw-register-form class="ng-isolate-scope">
-                <div ng-class="$ctrl.styles.wrapper" class="lSU-UeevMWDFTc7xVRq_g">
-                  <form class="form-horizontal ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-parse"
-                    novalidate="" ng-if="$ctrl.user" ng-submit="$ctrl.submit()" id="registerForm">
-                    <fieldset style="border: none; padding: 30px 40px 10px 40px;">
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">
-                          <span translate="Register_Member_Account" class="ng-scope">Tên tài
-                            khoản</span>
-                        </label>
-                        <div class="col-sm-6 ng-isolate-scope" field-error=""
-                          field-error-title="$ctrl.user.account.errorMessage"
-                          field-error-is-open="$ctrl.user.account.invalid"
-                          ng-class="{ 'has-error': $ctrl.user.account.invalid }" style="position: relative;">
-                          <input type="text"
-                            class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched"
-                            placeholder="Từ 6 đến 12 ký tự, không sử dụng ký tự đặc biệt"
-                            ng-model="$ctrl.user.account.value" ng-blur="$ctrl.user.account.validate()" id="username">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">
-                          <span translate="Register_Member_Password" class="ng-scope">Mật khẩu
-                            đăng nhập</span>
-                        </label>
-                        <div class="col-sm-6 ng-isolate-scope" field-error=""
-                          field-error-title="$ctrl.user.password.errorMessage"
-                          field-error-is-open="$ctrl.user.password.invalid"
-                          ng-class="{ 'has-error': $ctrl.user.password.invalid }" style="position: relative;">
-                          <input type="password"
-                            class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched"
-                            placeholder="Hơn 6 ký tự phải bao gồm chữ cái và số" ng-model="$ctrl.user.password.value"
-                            ng-blur="$ctrl.user.password.validate()" ng-change="$ctrl.user.checkPasswordStrength()"
-                            id="password">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">
-                          <span translate="Register_Confirm_Password" class="ng-scope">Xác
-                            nhận
-                            mật khẩu</span>
-                        </label>
-                        <div class="col-sm-6 ng-isolate-scope" field-error=""
-                          field-error-title="$ctrl.user.confirmPassword.errorMessage"
-                          field-error-is-open="$ctrl.user.confirmPassword.invalid"
-                          ng-class="{ 'has-error': $ctrl.user.confirmPassword.invalid }" style="position: relative;">
-                          <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                            placeholder="Vui lòng xác nhận lại mật khẩu của bạn"
-                            ng-model="$ctrl.user.confirmPassword.value" ng-blur="$ctrl.user.confirmPassword.validate()"
-                            id="password_cf">
-                        </div>
-                      </div>
-                      <div class="form-group name ng-scope" ng-if="$ctrl.user.name.visible">
-                        <label class="col-sm-2 control-label">
-                          <span translate="Register_Real_Name" class="ng-scope">Họ và tên</span>
-                        </label>
-                        <div class="col-sm-6 ng-isolate-scope" field-error=""
-                          field-error-title="$ctrl.user.name.errorMessage" field-error-is-open="$ctrl.user.name.invalid"
-                          ng-class="{ 'has-error': $ctrl.user.name.invalid }" style="position: relative;">
-                          <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                            placeholder="Họ và tên không bỏ dấu" ng-model="$ctrl.user.name.value"
-                            ng-blur="$ctrl.user.name.validate()" id="name">
-                        </div>
-                      </div>
-                      <div class="form-group name ng-scope" ng-if="$ctrl.user.name.visible">
-                        <label class="col-sm-2 control-label">
-                          <span translate="Register_Real_Name" class="ng-scope">Số điện thoại</span>
-                        </label>
-                        <div class="col-sm-6 ng-isolate-scope" field-error=""
-                          field-error-title="$ctrl.user.name.errorMessage" field-error-is-open="$ctrl.user.name.invalid"
-                          ng-class="{ 'has-error': $ctrl.user.name.invalid }" style="position: relative;">
-                          <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                            ng-model="$ctrl.user.name.value" ng-blur="$ctrl.user.name.validate()" id="phone"
-                            placeholder="Dùng số điện thoại thật để lấy lại mật khẩu" value="+84">
-                        </div>
-                      </div>
-
-                      <div class="form-group name ng-scope" ng-if="$ctrl.user.name.visible">
-                        <label class="col-sm-2 control-label">
-                          <span translate="Register_Real_Name" class="ng-scope">Mã đại lý</span>
-                        </label>
-                        <div class="col-sm-6 ng-isolate-scope" field-error=""
-                          field-error-title="$ctrl.user.name.errorMessage" field-error-is-open="$ctrl.user.name.invalid"
-                          ng-class="{ 'has-error': $ctrl.user.name.invalid }" style="position: relative;">
-                          <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty"
-                            placeholder="Vui lòng nhập mã đại lý của bạn (Nếu có)" ng-model="$ctrl.user.name.value"
-                            ng-blur="$ctrl.user.name.validate()" id="refcode">
-                        </div>
-                      </div>
-                   
-                    </fieldset>
-                    <fieldset style="border: none; text-align: center;">
-                      <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" style="padding: 15px 30px; text-transform: uppercase;
-                          border: none;
-                          border-radius: 5px;
-                          font-size: 17px;
-                          font-weight: 500;
-                          color: #fff;
-                          background: linear-gradient(to top, #a80303, #ff0d00, #ffa008);
-                          cursor: pointer;" class="btn btn-default _1SkHEsu5miBpcpNXUNtIoM">
-                            <span ng-if="!$ctrl.registerPending" translate="Register_Sign_Up" class="ng-scope">Đăng ký
-                              ngay</span>
-                          </button>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </form>
+              </div>
+              <form class="form-horizontal ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-parse"
+                novalidate="" ng-if="$ctrl.user" ng-submit="$ctrl.submit()" id="registerForm"
+                style="height: auto; padding: 18px 30px; width: 461px; background: rgba(169, 169, 169, .4); border-radius: 30px;">
+                <!-- Tên tài khoản -->
+                <div class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i class="fa-regular fa-user" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="text" placeholder="Tên tài khoản (6-12 ký tự)" ng-model="$ctrl.user.account.value"
+                    ng-blur="$ctrl.user.account.validate()" id="username"
+                    class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched">
                 </div>
-              </gupw-register-form>
-            </div>
-          </article>
+                <!-- Mật khẩu đăng nhập -->
+                <div class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i class="fa-solid fa-lock" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="password" placeholder="Mật khẩu đăng nhập" ng-model="$ctrl.user.password.value"
+                    ng-blur="$ctrl.user.password.validate()" ng-change="$ctrl.user.checkPasswordStrength()"
+                    id="password" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched">
+                </div>
+                <!-- Xác nhận mật khẩu -->
+                <div class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i class="fa-solid fa-lock" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="password" placeholder="Xác nhận mật khẩu" ng-model="$ctrl.user.confirmPassword.value"
+                    ng-blur="$ctrl.user.confirmPassword.validate()" id="password_cf"
+                    class="form-control ng-pristine ng-untouched ng-valid ng-empty">
+                </div>
+                <!-- Họ và tên -->
+                <div class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i class="fa-solid fa-address-card" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="text" placeholder="Họ và tên (không bỏ dấu)" ng-model="$ctrl.user.name.value"
+                    ng-blur="$ctrl.user.name.validate()" id="name"
+                    class="form-control ng-pristine ng-untouched ng-valid ng-empty">
+                </div>
+                <!-- Số điện thoại -->
+                <div class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i class="fa-solid fa-phone" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="text" placeholder="Số điện thoại" ng-model="$ctrl.user.phone.value"
+                    ng-blur="$ctrl.user.phone.validate()" id="phone" value="+84"
+                    class="form-control ng-pristine ng-untouched ng-valid ng-empty">
+                </div>
+                <!-- Mã đại lý -->
+                <div class="_3kf2U2RqwnANN5VYWFRt8X">
+                  <i class="fa-solid fa-people-arrows" style="color: #e23035; font-size: 20px;"></i>
+                  <input type="text" placeholder="Mã đại lý (nếu có)" ng-model="$ctrl.user.refcode.value" id="refcode"
+                    class="form-control ng-pristine ng-untouched ng-valid ng-empty">
+                </div>
+                <!-- Nút đăng ký -->
+                <button type="submit" class="_1elJEDoklSJeZCRhRorPTp" style="margin-top: 15px;">
+                  <span ng-if="!$ctrl.registerPending" translate="Register_Sign_Up" class="ng-scope">ĐĂNG KÝ</span>
+                </button>
+                <p ng-class="$ctrl.styles.txt" class="_3eN8dYJXCF83-Dh1qe5MAc">
+                  <span>Đã có tài khoản?</span>
+                  <span>
+                    Nhấp Vào <span style="color: blue; cursor: pointer;" ng-click="$ctrl.openLoginModal()"> Đây </span>
+                    để đăng nhập!
+                  </span>
+                </p>
+              </form>
+            </section>
+          </div>
         </gupw-register>
       </div>
     </div>
@@ -1656,46 +1767,54 @@ window.smartsupp||(function(d) {
       <section class="header-top">
         <div>
           <div class="header-top-left">
-            <% if(dataPage.session.user) {%>
-              <a role="button" tabindex="0" href="/account/deposit" class="btn btn-secondary">
-                NẠP TIỀN
-              </a>
-              <a role="button" tabindex="0" href="/account/withdraw" class="btn btn-secondary">
-                RÚT TIỀN
-              </a>
-              <%}%>
+            <a class="logomain" href="/">
+              <img src="/images/logo2.png">
+            </a>
           </div>
 
           <% if (dataPage.session.user) { %>
             <div class="header-top-right">
-              <div style="display: flex;align-items: center;gap: 10px;">
-                <i style="font-size: 30px;color: #fd0d00;padding-right: 10px;border-right: 2px solid;"
-                  class="fa-solid fa-circle-info"></i>
-                <a style="text-decoration: none;color: #fffd;" href="/account/agency">Khu vực đại lý</a>
+              <div class="header-user-info">
+                <span class="header-user-label">Tài khoản :</span>
+                <span class="_3lymj_9N-oJ2lPh20o6tzf">
+                  <%=dataPage.session.user.username%>
+                </span>
+                <i class="fa-regular fa-comment-dots" style="color: #5a8f3c; font-size: 18px; margin-left: 4px;"></i>
               </div>
-              <div style="display: flex;align-items: center;gap: 10px;">
-                <i style="font-size: 30px;color: #fd0d00;padding-right: 10px;border-right: 2px solid;"
-                  class="fa-solid fa-user"></i>
-                <div>
-                  <p style="color: #fff;" class="_3lymj_9N-oJ2lPh20o6tzf">
-                    <%=dataPage.session.user.username%>
-                  </p>
-                  <div style="display: flex; align-items: center;">
-                    <p style="color: #fff;" class="balance HU9oLicjLil3hDKujppTr header-balance">
-                      <%=dataPage.helpers.numberWithCommas(dataPage.session.user.coin / 1000)%> K
-                    </p>
-                    <span id="reloadBalanceBtn"
-                      style="color: #ffffff; font-size: 12px; margin-left: 6px;cursor:pointer;"><i
-                        class="fa fa-refresh"></i></span>
-                  </div>
-
-                </div>
+              <div class="header-user-info">
+                <span class="header-user-label">Ví tài khoản :</span>
+                <span class="balance HU9oLicjLil3hDKujppTr header-balance">
+                  <%=dataPage.helpers.numberWithCommas(dataPage.session.user.coin / 1000)%>
+                </span>
+                <span id="reloadBalanceBtn" style="margin-left: 4px; cursor: pointer; font-size: 14px; color: #c0392b;">
+                  <i class="fa fa-refresh"></i>
+                </span>
               </div>
-              <div>
-                <button style="background: transparent; border: none; cursor: pointer;" type="button"
-                  class="btn btn-link _1TEhFF5lWfbkg-wGKQap0W" id="logoutButton">
-                  <i style="font-size: 30px;color: #fd0d00;" class="fa-solid fa-right-from-bracket"></i>
+              <button class="btn btn-secondary header-btn-deposit">
+                <a href="/account/deposit">
+                  NẠP TIỀN</a>
+              </button>
+              <button class="btn btn-secondary header-btn-withdraw">
+                <a href="/account/withdraw">
+                  RÚT TIỀN</a>
+              </button>
+              <div class="header-dropdown-toggle">
+                <button type="button" class="header-arrow-btn" id="headerDropdownBtn">
+                  <i class="fa-solid fa-chevron-down" id="headerDropdownIcon"></i>
                 </button>
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                  <ul>
+                    <li><a href="/account/game-history"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đặt
+                        cược</a></li>
+                    <li><a href="/account/deposit"><i class="fa-solid fa-money-bill-wave"></i> Nạp tiền</a></li>
+                    <li><a href="/account/withdraw"><i class="fa-solid fa-money-bill-transfer"></i> Rút tiền</a></li>
+                    <li><a href="/account/finan-history"><i class="fa-solid fa-receipt"></i> Chi tiết giao dịch</a></li>
+                    <li><a href="/account/security"><i class="fa-solid fa-lock"></i> Đổi mật khẩu</a></li>
+                  </ul>
+                  <div class="header-dropdown-logout">
+                    <a href="#" id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+                  </div>
+                </div>
               </div>
             </div>
             <% } %>
@@ -1706,15 +1825,41 @@ window.smartsupp||(function(d) {
                     translate="Shared_Login" class="login _2mBNgBjbvImj-b_6WuwAFm">ĐĂNG NHẬP</button>
                   <button id="reg" ng-class="$ctrl.styles.reg" ng-click="$ctrl.openRegisterModal()" type="button"
                     translate="Shared_Nav_JoinUs" class="register ppUNnOlkVUpue-NNt6vxo">ĐĂNG KÝ</button>
+                  <button id="reg" ng-class="$ctrl.styles.reg" type="button" translate="Shared_Nav_JoinUs"
+                    class="playtest">CHƠI THỬ</button>
                 </div>
                 <% } %>
         </div>
+        <div class="header-top-links">
+          <a href="#"
+            onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH để biết thêm về đại sứ');"><i
+              class="fa-solid fa-user-tie"></i> Đại Sứ</a>
+          <a href="#" onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH để tải App');"><i
+              class="fa-solid fa-mobile-screen-button"></i> Tải APP</a>
+          <a href="#" onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH để trở thành đại lý');"><i
+              class="fa-solid fa-handshake"></i> Đại lý</a>
+          <a href="#" onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH qua livechat');"><i
+              class="fa-solid fa-headset"></i> CSKH 24/7</a>
+          <a href="#"
+            onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH để giới thiệu bạn bè');"><i
+              class="fa-solid fa-people-arrows"></i> GTBB</a>
+          <a href="#" onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH để nhận CODE');"><i
+              class="fa-solid fa-gift"></i> Nhập CODE nhận thưởng</a>
+        </div>
+        <video autoplay="" loop="" muted="" ng-if="$ctrl.filmBg.isVideo" class="ng-scope">
+          <source ng-if="$ctrl.filmBg.isMp4" type="video/mp4" class="ng-scope"
+            src="/images/572ceae3-e933-4490-8205-b90196287b0c.mp4">
+        </video>
       </section>
       <section class="header-bottom">
         <div ng-class="$ctrl.styles.wrapper" class="TFkX-2VIsaFZW7t64YI07">
           <nav ng-class="$ctrl.styles.nav" class="_4GFFQME3VxQOLaxRzBxeQ">
             <ul>
-              <li style="text-align: left;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+              <li style="text-align: center;">
+                <a href="/"><span class="ng-isolate-scope">TRANG CHỦ</span></a>
+              </li>
+              <!-- Casino -->
+              <li style="text-align: center;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
                 class="live">
                 <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav"
                     class="ng-isolate-scope">CASINO</span> </a>
@@ -1730,13 +1875,6 @@ window.smartsupp||(function(d) {
                     </li>
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="WM Trực Tuyến">
-                          <img ng-src="/images/Casino/WM.png" src="/images/Casino/WM.png">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
-                      <a ng-click="navLayer2.click($event)">
                         <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="DG Trực Tuyến">
                           <img ng-src="/images/Casino/DG.png" src="/images/Casino/DG.png">
                         </span>
@@ -1744,22 +1882,64 @@ window.smartsupp||(function(d) {
                     </li>
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="GP Trực Tuyến">
-                          <img ng-src="/images/Casino/GPI.png" src="/images/Casino/GPI.png">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="PP Trực Tuyến">
-                          <img ng-src="/images/Casino/PP.png" src="/images/Casino/PP.png">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="WM Trực Tuyến">
+                          <img ng-src="/images/Casino/WM.png" src="/images/Casino/WM.png">
                         </span>
                       </a>
                     </li>
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
                         <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="EG Trực Tuyến">
-                          <img ng-src="/images/Casino/EG.png" src="/images/Casino/EG.png">
+                          <img ng-src="/images/Casino/EVO.png" src="/images/Casino/EVO.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="BG Trực Tuyến">
+                          <img ng-src="/images/Casino/BG.png" src="/images/Casino/BG.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="PA Trực Tuyến">
+                          <img ng-src="/images/Casino/PA.png" src="/images/Casino/PA.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AG Trực Tuyến">
+                          <img ng-src="/images/Casino/AG.png" src="/images/Casino/AG.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="DB Trực Tuyến">
+                          <img ng-src="/images/Casino/DB.png" src="/images/Casino/DB.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="VIA Trực Tuyến">
+                          <img ng-src="/images/Casino/VIA.png" src="/images/Casino/VIA.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="PT Trực Tuyến">
+                          <img ng-src="/images/Casino/PT.png" src="/images/Casino/PT.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="TP Trực Tuyến">
+                          <img ng-src="/images/Casino/TP.png" src="/images/Casino/TP.png">
                         </span>
                       </a>
                     </li>
@@ -1772,206 +1952,494 @@ window.smartsupp||(function(d) {
                     </li>
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="DB Trực Tuyến">
-                          <img ng-src="/images/Casino/DB.png" src="/images/Casino/DB.png">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="MG Trực Tuyến">
+                          <img ng-src="/images/Casino/MG.png" src="/images/Casino/MG.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="IDN Trực Tuyến">
+                          <img ng-src="/images/Casino/IDN.png" src="/images/Casino/IDN.png">
                         </span>
                       </a>
                     </li>
                   </ol>
                 </div>
               </li>
-
-              <li style="text-align: left;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+              <!-- Nổ hũ -->
+              <li style="text-align: center;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+                class="nohu">
+                <a href="#"><span class="ng-isolate-scope">NỖ HŨ</span></a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/168g.png" src="/images/NoHu/168g.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/askme.png" src="/images/NoHu/askme.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/cq9.png" src="/images/NoHu/cq9.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/fc.png" src="/images/NoHu/fc.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/jdb.png" src="/images/NoHu/jdb.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/jili.png" src="/images/NoHu/jili.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/mg.png" src="/images/NoHu/mg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/mw.png" src="/images/NoHu/mw.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/ns.png" src="/images/NoHu/ns.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/pg.png" src="/images/NoHu/pg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/pp.png" src="/images/NoHu/pp.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/pt.png" src="/images/NoHu/pt.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/spribe.png" src="/images/NoHu/spribe.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/ygr.png" src="/images/NoHu/ygr.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/tp.png" src="/images/NoHu/tp.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/turbo.png" src="/images/NoHu/turbo.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/NoHu/va.png" src="/images/NoHu/va.png">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+              <!-- Bắn cá -->
+              <li style="text-align: center;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+                class="Banca">
+                <a href="#"><span class="ng-isolate-scope">BẮN CÁ</span></a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/askme.png" src="/images/BanCa/askme.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/bg.png" src="/images/BanCa/bg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/bsp.png" src="/images/BanCa/bsp.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/cq9.png" src="/images/BanCa/cq9.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/fc.png" src="/images/BanCa/fc.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/ftg.png" src="/images/BanCa/ftg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/jdb.png" src="/images/BanCa/jdb.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/jili.png" src="/images/BanCa/jili.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/ka.png" src="/images/BanCa/ka.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/lucky365.png" src="/images/BanCa/lucky365.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/mg.png" src="/images/BanCa/mg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/mw.png" src="/images/BanCa/mw.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/rsg.png" src="/images/BanCa/rsg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/tp.png" src="/images/BanCa/tp.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/va.png" src="/images/BanCa/va.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/yb.png" src="/images/BanCa/yb.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/BanCa/ygr.png" src="/images/BanCa/ygr.png">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+              <!-- Game bài -->
+              <li style="text-align: center" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }">
+                <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav" class="ng-isolate-scope">
+                    GAME BÀI</span>
+                </a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/GameBai/ftg.png" src="/images/GameBai/ftg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/GameBai/jili.png" src="/images/GameBai/jili.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/GameBai/km.png"
+                            src="/images/GameBai/km.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/GameBai/mg.png"
+                            src="/images/GameBai/mg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/GameBai/r88.png"
+                            src="/images/GameBai/r88.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/GameBai/tp.png"
+                            src="/images/GameBai/tp.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/GameBai/v8.png"
+                            src="/images/GameBai/v8.png">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+              <!-- Thể thao -->
+              <li style="text-align: center;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
                 class="sport">
                 <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav" class="ng-isolate-scope">THỂ
                     THAO</span>
                 </a>
                 <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
-                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8" style="left: 50%; transform: translateX(-50%);">
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8">
                   <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SB Thể Thao">
-                          <img ng-src="/images/Sport/SABA.png" src="/images/Sport/SABA.png">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SBO Thể Thao">
+                          <img ng-src="/images/Sport/sbo.png" src="/images/Sport/sbo.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SABA Thể Thao">
+                          <img ng-src="/images/Sport/saba.png" src="/images/Sport/saba.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="CR Thể Thao">
+                          <img ng-src="/images/Sport/cr.png" src="/images/Sport/cr.png">
                         </span>
                       </a>
                     </li>
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
                         <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="CMD Thể Thao">
-                          <img ng-src="/images/Sport/CMD.png" src="/images/Sport/CMD.png">
+                          <img ng-src="/images/Sport/cmd.png" src="/images/Sport/cmd.png">
                         </span>
                       </a>
                     </li>
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="UG2 Thể Thao">
-                          <img ng-src="/images/Sport/UG.png" src="/images/Sport/UG.png">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="IM Thể Thao">
+                          <img ng-src="/images/Sport/im.png" src="/images/Sport/im.png">
                         </span>
                       </a>
                     </li>
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="SBO Thể Thao">
-                          <img ng-src="/images/Sport/SBO.png" src="/images/Sport/SBO.png">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="UG Thể Thao">
+                          <img ng-src="/images/Sport/ug.png" src="/images/Sport/ug.png">
                         </span>
                       </a>
                     </li>
                   </ol>
                 </div>
               </li>
-
-              <li style="text-align: left" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
-                class="board">
-                <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav" class="ng-isolate-scope">
-                    GAMES</span>
-                </a>
-                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
-                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8" style="left: 50%; transform: translateX(-50%);">
-                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="JL Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/gameSlot/JL.jpg"
-                            src="/images/gameSlot/JL.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0165 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;" ng-src="/images/gameSlot/dog.png"
-                            src="/images/gameSlot/dog.png">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0166 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/aztecgems.jpg" src="/images/gameSlot/aztecgems.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0228 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/lions.jpg" src="/images/gameSlot/lions.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0183 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/cowgold.jpg" src="/images/gameSlot/cowgold.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0213 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/pandagold.jpg" src="/images/gameSlot/pandagold.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0238 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/pbonanza.jpg" src="/images/gameSlot/pbonanza.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0210 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/shammthor.jpg" src="/images/gameSlot/shammthor.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0135 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/waysrhino.jpg" src="/images/gameSlot/waysrhino.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0315 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/wildwest.jpg" src="/images/gameSlot/wildwest.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0739 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/fruitsw.jpg" src="/images/gameSlot/fruitsw.jpg">
-                        </span>
-                      </a>
-                    </li>
-                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope" id="slotGame">
-                      <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope"
-                          data-game="PP0253 Game Bài">
-                          <img style="width: 150px;height: 150px;border-radius: 10px;"
-                            ng-src="/images/gameSlot/tweethouse.jpg" src="/images/gameSlot/tweethouse.jpg">
-                        </span>
-                      </a>
-                    </li>
-                  </ol>
-                </div>
-              </li>
-
-              <li style="text-align: right; margin-left: 5%;" ng-repeat="nav in $ctrl.navigation"
-                ng-class="{ 'active': nav.isActive }" class="cock">
+              <!-- Đá gà -->
+              <li style="text-align: center;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+                class="cock">
                 <a ng-click="nav.click($event)"> <span nav-link-display="" model="nav" class="ng-isolate-scope">ĐÁ
                     GÀ</span> </a>
                 <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
-                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8" style="left: 50%; transform: translateX(-50%);">
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8">
                   <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
                     <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
                       <a ng-click="navLayer2.click($event)">
-                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="WS168 Đá Gà">
-                          <img ng-src="/images/Cookfight/DAGA.png" src="/images/Cookfight/DAGA.png">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/Cookfight/aog.png" src="/images/Cookfight/aog.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/Cookfight/ga28.png" src="/images/Cookfight/ga28.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/Cookfight/ws168.png" src="/images/Cookfight/ws168.png">
                         </span>
                       </a>
                     </li>
                   </ol>
                 </div>
               </li>
-
-              <li style="text-align: center; padding-left: 25px"> <a href="/thongTinDaiLy/profile" chat-link=""
-                  class="ng-scope" style="color: #fff;">ĐẠI LÝ</a>
+              <!-- Xổ số -->
+              <li style="text-align: center;">
+                <a href="#"><span class="ng-isolate-scope">XỔ SỐ</span></a>
+                <div ng-class="$ctrl.styles.subnav" ng-if="nav.sub.length > 0" align-position=""
+                  class="ng-scope _2xvnAce2IF0yzYHRGAlbG8">
+                  <ol ng-repeat="navLayer2List in nav.sub" class="ng-scope">
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/XoSo/gw.png" src="/images/XoSo/gw.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/XoSo/sw.png" src="/images/XoSo/sw.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/XoSo/tcg.png" src="/images/XoSo/tcg.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/XoSo/tp.png" src="/images/XoSo/tp.png">
+                        </span>
+                      </a>
+                    </li>
+                    <li ng-repeat="navLayer2 in navLayer2List" class="ng-scope">
+                      <a ng-click="navLayer2.click($event)">
+                        <span nav-link-display="" model="navLayer2" class="ng-isolate-scope" data-game="AAAA Điện Tử">
+                          <img ng-src="/images/XoSo/vr.png" src="/images/XoSo/vr.png">
+                        </span>
+                      </a>
+                    </li>
+                  </ol>
+                </div>
               </li>
-
-              <li style="text-align: right;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
+              <!-- Khuyến mãi -->
+              <li style="text-align: center;" ng-repeat="nav in $ctrl.navigation" ng-class="{ 'active': nav.isActive }"
                 class="promotion"> <a onclick="window.location='/Promotion'" ng-click="nav.click($event)"> <span
                     nav-link-display="" model="nav" class="ng-isolate-scope">KHUYẾN MÃI</span>
                 </a>
               </li>
+              <!-- Vip -->
+              <li style="text-align: center;">
+                <a href="#"
+                  onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH để nâng cấp VIP');"><span
+                    class="ng-isolate-scope">VIP</span></a>
+              </li>
+              <!-- Live Stream -->
+              <li style="text-align: center;">
+                <a href="#"
+                  onclick="event.preventDefault(); toastr.info('Vui lòng liên hệ với CSKH để biết thêm thông tin');"><span
+                    class="ng-isolate-scope">LIVESTREAM</span></a>
+              </li>
             </ul>
           </nav>
-          <a class="logomain" href="/">
-            <img src="/images/logo2.png">
-          </a>
         </div>
       </section>
     </header>
@@ -1981,18 +2449,19 @@ window.smartsupp||(function(d) {
   <!-- Modal chuyen quy -->
   <div id="game-transfer-wallet-modal-container"></div>
 
-  <div id="popup-login">
+  <!-- <div id="popup-login">
     <div class="popup-login--overlay"></div>
     <div class="popup-login--content">
       <img src="/images/pop-up-login.png" alt="pop-up-login.png">
       <i class="fa-regular fa-rectangle-xmark" id="close-popup"></i>
     </div>
-  </div>
+  </div> -->
 
 
 </body>
 
-<script>
+<!-- Popup login -->
+<!-- <script>
   document.addEventListener("DOMContentLoaded", function () {
     const popupLogin = document.getElementById("popup-login");
     // Kiểm tra trạng thái của popup từ localStorage
@@ -2010,7 +2479,7 @@ window.smartsupp||(function(d) {
       };
     }
   });
-</script>
+</script> -->
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <!-- Google tag (gtag.js) -->
@@ -2046,15 +2515,28 @@ window.smartsupp||(function(d) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
       integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- scrolled header -->
+
+
+    <!-- Header dropdown toggle -->
     <script>
-      window.addEventListener('scroll', function () {
-        const header = document.querySelector('header');
-        if (window.scrollY > 0) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+      document.addEventListener('DOMContentLoaded', function () {
+        const btn = document.getElementById('headerDropdownBtn');
+        const menu = document.getElementById('headerDropdownMenu');
+        if (!btn || !menu) return;
+
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const isOpen = menu.classList.toggle('open');
+          btn.classList.toggle('open', isOpen);
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', function (e) {
+          if (!menu.contains(e.target) && !btn.contains(e.target)) {
+            menu.classList.remove('open');
+            btn.classList.remove('open');
+          }
+        });
       });
     </script>
 
